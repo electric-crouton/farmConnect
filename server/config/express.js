@@ -15,6 +15,8 @@ var mean = require('meanio'),
   config = mean.getConfig(),
   bodyParser = require('body-parser');
 
+  asdfasg asfasdf asdf 
+
 module.exports = function(app, db) {
 
   app.use(bodyParser.json(config.bodyParser.json));
