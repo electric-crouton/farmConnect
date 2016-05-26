@@ -1,0 +1,50 @@
+@import url(https://fonts.googleapis.com/css?family=Muli);
+*{
+  margin:0;
+ font-family: 'Muli', sans-serif;
+}
+
+body{
+  background-image: url("../img/grass-field.jpg");
+  background-size: cover;
+}
+
+h1 { 
+  margin-bottom: 20px; 
+  font-size:1.6em;
+  text-align: center;
+  padding-top: 20px;
+}
+
+input[type="submit"]{
+  color:#222222;
+  width: 270px;
+  font-size: 14px;
+}
+
+#wrap{
+  color: #F7F7EB;
+  text-align: left;
+}
+
+form input{
+  padding:15px;
+  margin-bottom:10px;
+  border-radius:7px;
+  border: none;
+  width: 80%;
+}
+
+form{
+  margin: 0 auto;  
+  width: 300px;
+  padding: 30px;
+}
+.error{height:30px; color:#B52E31;
+}
+input.ng-valid.ng-touched{
+  border: 2px solid green;
+}
+input.ng-invalid.ng-touched {
+  border: 2px solid #B52E31;
+ }

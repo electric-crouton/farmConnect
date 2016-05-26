@@ -1,0 +1,32 @@
+<div id="wrap">
+  <div class="form_wrap">
+    <h1>Add a product to sell!</h1>
+   
+    <!-- pass in the variable if our form is valid or invalid -->
+    <form name="addProductForm" ng-submit="submitForm(addProductForm.$valid)" novalidate> <!-- novalidate prevents HTML5 validation since we will be validating ourselves -->
+
+      <div class="form-group" ng-class="{ 'has-error' : addProductForm.farmName.$invalid && !addProductForm.farmName.$pristine }">
+        <label>Farm Name</label>
+        <input type="text" name="name" class="form-control" ng-model="farm.name" required>
+        <p ng-show="addProductForm.name.$invalid && !addProductForm.name.$pristine" class="help-block">Farm name is required</p>
+      </div>
+      
+      <div class="form-group">
+        <label>Product name</label>
+        <input type="text" name="product" class="form-control" ng-model="farm.product">
+      </div>
+          
+      <div class="form-group">
+        <label>Price of Product (per pound)</label>
+        <input class="form-control" ng-model="product.price"> 
+      </div>
+
+      <div>
+        <input type="submit" value="Submit" />
+      </div>
+ 
+    </form>
+  </div>
+</div>
+
+

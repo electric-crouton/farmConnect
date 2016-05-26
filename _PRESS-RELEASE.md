@@ -17,28 +17,29 @@ Once the project moves into development, the press release can be used as a touc
  -->
  
 ## Heading ##
-  > Name the product in a way the reader (i.e. your target customers) will understand.
+Farm Connect
 
 ## Sub-Heading ##
-  > Describe who the market for the product is and what benefit they get. One sentence only underneath the title.
+Connecting people who care about their health and the environment to local farms.
 
 ## Summary ##
-  > Give a summary of the product and the benefit. Assume the reader will not read anything else so make this paragraph good.
+Farm owners create profiles showing off their farms, then put their products up for sale. Consumers search for produce that fit their dietary preferences (organic, pesticide-free, etc.), then order for delivery directly to their doors.
 
 ## Problem ##
-  > Describe the problem your product solves.
+Small farms grow great produce but don't have the resources to reach out to all their potential customers. Consumers want to know where their food comes from, and they want food that's fresh, tasty, and healthy. But they also want to be able to quickly and painlessly buy a wide variety of produce from a large collection of local farms.
 
 ## Solution ##
-  > Describe how your product elegantly solves the problem.
+Farm Connect brings together small farms and consumers so that farms can find appreciative buyers of their producers and consumers can get the fresh, healthy, local produce they crave.
 
 ## Quote from You ##
-  > A quote from a spokesperson in your company.
+"Once you try Farm Connect, you'll never go back to the supermarket produce aisle!"
 
 ## How to Get Started ##
-  > Describe how easy it is to get started.
+"Consumers: just head to our website today and start browsing local produce!
+Farmers: just sign up for a free profile and start selling produce today!"
 
 ## Customer Quote ##
-  > Provide a quote from a hypothetical customer that describes how they experienced the benefit.
+"Before I discovered Farm Connect, I ate junk food for dinner every day, and I was putting on weight. Now that I have great local produce through Farm Connect, I just fix myself a salad!"
 
 ## Closing and Call to Action ##
-  > Wrap it up and give pointers where the reader should go next.
+Farm Connect brings together small farmers and consumers for health, wealth, and local food!
