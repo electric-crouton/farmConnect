@@ -1,10 +1,9 @@
 const express = require ('express');
 const app = express();
-const productsController = ('./products/')
 
-app.use(express.static(__dirname + '/../public'));
+require('./config/middlewares/initialization.js')(app, express);
+require('./config/routes.js')(app);
 
-app.get('api/products', productsController.search);
-app.push('api/products', productsController.post);
+console.log('ready to listen');
 
 app.listen(1337);
