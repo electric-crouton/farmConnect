@@ -27,5 +27,5 @@ CREATE TABLE post (
   farm_id integer REFERENCES farm (id),
   produce_id integer REFERENCES produce (id),
   pricePerPound decimal(10, 2),
-  amountAvailable integer
+  poundsAvailable integer
 );

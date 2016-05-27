@@ -11,6 +11,25 @@ module.exports = {
     });
   },
   addProduct: (req, res) => {
-    res.send('post');
+    product = req.body;
+    console.log(req.body);
+    connection.query(
+      `INSERT INTO post\
+      (farm_id, produce_id, pricePerPound, amountAvailable)\
+      VALUES ((SELECT id FROM farm WHERE name = ${product.farmName}),\
+      (SELECT id FROM produce WHERE name = ${product.productName}),\
+      ${product.pricePerPound}\
+      ${product.poundsAvailable}`,
+
+      (err, result) => {
+        if (err) {
+          console.error('error:', err);
+          res.sendStatus(500);
+        } else {
+          res.sendStatus(200);
+        }
+      }
+      
+    );
   }
 };
