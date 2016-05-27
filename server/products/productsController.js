@@ -1,8 +1,8 @@
 module.exports = {
-  search: (req, res) => {
+  getProducts: (req, res) => {
     res.send('search');
   },
-  post: (req, res) => {
+  addProduct: (req, res) => {
     res.send('post');
   }
 };
