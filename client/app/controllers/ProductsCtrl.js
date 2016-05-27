@@ -1,6 +1,6 @@
 angular.module('farmConnect.products', [])
 
-.controller('ProductsCtrl', function($scope) {
+.controller('ProductsCtrl', function($scope, Products) {
 
   $scope.items = [
     'Apples',
@@ -8,17 +8,21 @@ angular.module('farmConnect.products', [])
     'Cucumbers',
     'So many'
   ];
-  
-  $scope.query = {};
-  $scope.queryBy = '$';
-  
+
   $scope.search = '';
+
+  Products.getProducts()
+    .then(function(products) {
+      $scope.items.push(products);
+    });
+
 
   $scope.done = function(todo) {
     var indexOf = $scope.todos.indexOf(todo);
     if (indexOf !== -1) {
       $scope.todos.splice(indexOf, 1);
-    } fx  
+    }
+    fx
   };
 
   $scope.add = function(e) {

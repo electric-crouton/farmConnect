@@ -14,7 +14,6 @@ angular.module('farmConnect.routes', [])
       controller: 'ProductsCtrl'
     });
 
-
-  $urlRouterProvider.otherwise('/');
+$urlRouterProvider.otherwise('/');
 
 });
