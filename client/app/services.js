@@ -13,4 +13,5 @@ angular.module ('farmConnect.services', [])
   };
 
   return Products;
+
 });
