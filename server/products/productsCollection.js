@@ -16,10 +16,10 @@ module.exports = {
     connection.query(
       `INSERT INTO post\
       (farm_id, produce_id, pricePerPound, amountAvailable)\
-      VALUES ((SELECT id FROM farm WHERE name = ${product.farmName}),\
-      (SELECT id FROM produce WHERE name = ${product.productName}),\
-      ${product.pricePerPound}\
-      ${product.poundsAvailable}`,
+      VALUES ((SELECT id FROM farm WHERE name = '${product.farmName}'),\
+      (SELECT id FROM produce WHERE name = '${product.productName}'),\
+      ${product.pricePerPound},\
+      ${product.poundsAvailable})`,
 
       (err, result) => {
         if (err) {
@@ -29,7 +29,7 @@ module.exports = {
           res.sendStatus(200);
         }
       }
-      
+
     );
   }
 };
