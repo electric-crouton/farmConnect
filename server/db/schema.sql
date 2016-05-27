@@ -29,3 +29,14 @@ CREATE TABLE post (
   pricePerPound decimal(10, 2),
   amountAvailable integer
 );
+
+--Creates user table
+
+CREATE TABLE user (
+  id SERIAL PRIMARY KEY,
+  username VARCHAR(30) UNIQUE,
+  password VARCHAR(20) UNIQUE,
+  farmer BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+
