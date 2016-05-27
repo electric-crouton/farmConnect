@@ -1,0 +1,12 @@
+<div class="page-container" ng-controller="ProductsCtrl">
+  <div ui-view></div>
+  <!-- ALL VIEW STATES LOADED IN HERE -->
+  <!-- Search bar -->
+  <input type="text" ng-model="search">
+  <!-- Search results go here -->
+  <!-- Available produce goes here -->
+  <ul class="itemlist" ng-repeat="item in items track by $index">
+    <li>
+      <span>{{ items }}</span>
+    </li>
+</div>
