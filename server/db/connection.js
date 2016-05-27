@@ -10,9 +10,9 @@ var clientLink = 'postgres://localhost:5432/farmdata';
 // });
 
 module.exports = {
-  query: function(text, values, cb) {
+  query: function(text, cb) {
     pg.connect(clientLink, function(err, client, done) {
-      client.query(text, values, function(err, result) {
+      client.query(text, function(err, result) {
         done();
         cb(err, result);
       });
