@@ -1,16 +1,27 @@
 {
+<<<<<<< HEAD
   "name": "server",
+=======
+  "name": "farm-connect",
+>>>>>>> ee0c1b8374cf1880e8958f9c05c642125831f324
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+=======
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> ee0c1b8374cf1880e8958f9c05c642125831f324
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+<<<<<<< HEAD
     "express": "^4.13.4",
+=======
+>>>>>>> ee0c1b8374cf1880e8958f9c05c642125831f324
     "pg": "^4.5.5"
   }
 }

@@ -1,3 +1,0 @@
-var str = 'CREATE TABLE Farm (id SERIAL PRIMARY KEY, name character varying(10), location character varying(20), phone integer); CREATE TABLE Product (id SERIAL PRIMARY KEY, name character varying(30) UNIQUE); CREATE TABLE Post (id SERIAL PRIMARY KEY, id_Farm integer REFERENCES Farm (id), id_Products integer REFERENCES Products (id), pricePerPound character varying(6), amountAvailable character varying(30);)'
-
-module.exports = str;
