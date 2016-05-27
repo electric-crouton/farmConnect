@@ -5,8 +5,12 @@ angular.module('farmConnect.products', [])
   $scope.items = [
     'Apples',
     'Bananas',
-    'Cucumbers'
+    'Cucumbers',
+    'So many'
   ];
+  
+  $scope.query = {};
+  $scope.queryBy = '$';
   
   $scope.search = '';
 
@@ -14,7 +18,7 @@ angular.module('farmConnect.products', [])
     var indexOf = $scope.todos.indexOf(todo);
     if (indexOf !== -1) {
       $scope.todos.splice(indexOf, 1);
-    }
+    } fx  
   };
 
   $scope.add = function(e) {
@@ -26,6 +30,6 @@ angular.module('farmConnect.products', [])
 
   $scope.taskAdd1 = function() {
     $scope.todos.push($scope.taskInput1);
-    $scope.taskInput1 = "";
+    $scope.taskInput1 = '';
   };
 });

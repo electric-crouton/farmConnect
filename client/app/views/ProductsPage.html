@@ -2,11 +2,22 @@
   <div ui-view></div>
   <!-- ALL VIEW STATES LOADED IN HERE -->
   <!-- Search bar -->
-  <input type="text" ng-model="search">
-  <!-- Search results go here -->
-  <!-- Available produce goes here -->
-  <ul class="itemlist" ng-repeat="item in items track by $index">
-    <li>
-      <span>{{ items }}</span>
-    </li>
+  <div id=wrap>
+    <h1>Search</h1>
+    <form>
+      <input type="text" ng-model="search" placeholder="I am looking for...">
+    </form>
+    <!-- Search results go here -->
+    <div>
+      <ul class="searchResults"> 
+      </ul>
+    </div>
+    <!-- {{if (1===1){search} else {search};}} -->
+    <!-- Available produce goes here -->
+    <p>Products:</p>
+    <ul class="itemList " ng-repeat="item in items | filter:search">
+      <li>
+        <span>{{ item }}</span>
+      </li>
+  </div>
 </div>
