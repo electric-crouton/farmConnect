@@ -50,4 +50,45 @@ input.ng-valid.ng-touched{
 }
 input.ng-invalid.ng-touched {
   border: 2px solid #B52E31;
- }
+}
+
+.navbar {
+  margin-left: 50px;
+  width: 70%;
+  height: 40px;
+  background-color: #eee;
+  border-radius:7px;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a, .signout {
+  width: 100px;
+  height: 20px;
+  line-height: 20px;
+  padding: 10px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar li a:hover, .signout:hover {
+  background-color: #ddd;
+}
+
+.navbar li a.selected {
+  background-color: #ccc;
+}
+
+.container {
+  clear: both;
+  margin-top: 10px;
+}

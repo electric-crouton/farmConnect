@@ -24,7 +24,9 @@
   <body ng-app='farmConnect'>
 
     <!-- ALL VIEW STATES LOADED IN HERE -->
-    <div ui-view></div>
+    <div ng-include="'views/NavBar.html'"></div>
+    <div ui-view>
+    </div>
 
   </body>
 </html>
