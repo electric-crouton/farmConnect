@@ -11,6 +11,16 @@ angular.module ('farmConnect.services', [])
       console.error('Error in adding product!', err);
     });
   };
+  
+  Products.getProducts = function() {
+    return $http.get('/api/products')
+    .then(function(products) {
+      console.log('Successfully retrieved products!');
+      return products;
+    }, function(err) {
+      console.error('Error in getting products!', err);
+    });
+  };
 
   return Products;
 
