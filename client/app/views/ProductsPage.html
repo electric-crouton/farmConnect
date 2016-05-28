@@ -1,0 +1,17 @@
+<div class="page-container" ng-controller="ProductsCtrl">
+  <!-- Search bar -->
+  <div id=wrap>
+    <h1>Search</h1>
+    <form>
+      <input type="text" ng-model="search" placeholder="I am looking for...">
+    </form>
+    
+    <!-- Available produce goes here -->
+    <p>Products:</p>
+    <ul class="itemList " ng-repeat="item in items | filter:search">
+      <li>
+        <span>{{ item }}</span>
+      </li>
+    </ul>
+  </div>
+</div>  
