@@ -22,7 +22,7 @@ exports.getProducts = (req, res) => {  // note that this is a dummy query for te
 };
   
 exports.addFarmIfNecessary = (req, res, next) => {
-  product = req.body;
+  var product = req.body;
   connection.query(`SELECT EXISTS (SELECT * FROM farm WHERE name = '${product.farmName}')`, (err, result) => {
     if (!result.rows[0].exists) {
       connection.query(
@@ -44,7 +44,7 @@ exports.addFarmIfNecessary = (req, res, next) => {
 };
 
 exports.addProduceIfNecessary = (req, res, next) => {
-  product = req.body;
+  var product = req.body;
   connection.query(`SELECT EXISTS (SELECT * FROM produce WHERE name = '${product.productName}')`, (err, result) => {
     if (!result.rows[0].exists) {
       connection.query(
@@ -66,7 +66,7 @@ exports.addProduceIfNecessary = (req, res, next) => {
 };
 
 exports.addProduct = (req, res) => {
-  product = req.body;
+  var product = req.body;
   connection.query(
     `INSERT INTO post\
     (farm_id, produce_id, pricePerPound, amountAvailable)\
