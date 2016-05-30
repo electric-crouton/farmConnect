@@ -1,6 +1,6 @@
 const connection = require('../db/connection.js');
 
-var getProducts = module.exports.getProducts = (req, res) => {  // note that this is a dummy query for testing purposes
+module.exports.getProducts = (req, res) => {  // note that this is a dummy query for testing purposes
   connection.query('SELECT * FROM farm, produce, post WHERE produce.id = post.produce_id AND farm.id = post.farm_id', (err, result) => {
     if (err) {
       console.error('error!', err);
@@ -21,7 +21,7 @@ var getProducts = module.exports.getProducts = (req, res) => {  // note that thi
   });
 };
   
-var addFarmIfNecessary = module.exports.addFarmIfNecessary = (req, res, next) => {
+module.exports.addFarmIfNecessary = (req, res, next) => {
   product = req.body;
   connection.query(`SELECT EXISTS (SELECT * FROM farm WHERE name = '${product.farmName}')`, (err, result) => {
     if (!result.rows[0].exists) {
@@ -43,7 +43,7 @@ var addFarmIfNecessary = module.exports.addFarmIfNecessary = (req, res, next) =>
   });
 };
 
-var addProduceIfNecessary = module.exports.addProduceIfNecessary = (req, res, next) => {
+module.exports.addProduceIfNecessary = (req, res, next) => {
   product = req.body;
   connection.query(`SELECT EXISTS (SELECT * FROM produce WHERE name = '${product.productName}')`, (err, result) => {
     if (!result.rows[0].exists) {
@@ -65,7 +65,7 @@ var addProduceIfNecessary = module.exports.addProduceIfNecessary = (req, res, ne
   });
 };
 
-var addProduct = module.exports.addProduct = (req, res) => {
+module.exports.addProduct = (req, res) => {
   product = req.body;
   connection.query(
     `INSERT INTO post\
