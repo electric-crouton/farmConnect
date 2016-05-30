@@ -5,7 +5,18 @@ var getProducts = module.exports.getProducts = (req, res) => {  // note that thi
     if (err) {
       console.error('error!', err);
     } else {
-      res.send(result.rows);
+      var data = result.rows;
+      var posts = data.map((datum) => {
+        return {
+          farmName: datum.farm_name,
+          farmLocation: datum.location,
+          farmPhone: datum.phone,
+          productName: datum.product_name,
+          pricePerPound: datum.price_per_pound,
+          poundsAvailable: datum.pounds_available
+        };
+      });
+      res.send(posts);
     }
   });
 };
