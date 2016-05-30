@@ -1,11 +1,11 @@
 const connection = require('../db/connection.js');
 
 var getProducts = module.exports.getProducts = (req, res) => {  // note that this is a dummy query for testing purposes
-  connection.query('SELECT * FROM farm', (err, result) => {
+  connection.query('SELECT * FROM farm, produce, post WHERE produce.id = post.produce_id AND farm.id = post.farm_id', (err, result) => {
     if (err) {
       console.error('error!', err);
     } else {
-      res.send(result);
+      res.send(result.rows);
     }
   });
 };
