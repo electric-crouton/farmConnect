@@ -4,9 +4,11 @@
  font-family: 'Muli', sans-serif;
 }
 
-body{
+body {
   background-image: url("../img/grass-field.jpg");
   background-size: cover;
+  background-attachment: fixed;
+  height: 768px;
 }
 
 h1 { 
@@ -39,7 +41,6 @@ form input, .farmLocation {
 form {
   margin: 0 auto;  
   width: 300px;
-  padding: 30px;
 }
 .error {
   height:30px; 
@@ -50,4 +51,90 @@ input.ng-valid.ng-touched{
 }
 input.ng-invalid.ng-touched {
   border: 2px solid #B52E31;
- }
+}
+
+.navbar {
+  margin: 0 auto;
+  width: 60%;
+  height: 40px;
+  background-color: #eee;
+  border-radius:7px;
+}
+
+.navbar ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.navbar li {
+  float: left;
+}
+
+.navbar li a, .signout {
+  width: 100px;
+  height: 20px;
+  color: #53ad0e;
+  line-height: 20px;
+  padding: 10px;
+  display: block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.navbar li a:hover, .signout:hover {
+  background-color: #ddd;
+}
+
+.navbar li a.selected {
+  background-color: #ccc;
+}
+
+.product {
+  clear: both;
+  margin-bottom: 5px;
+  padding: 5px;
+}
+
+.product img {
+  width: 150px;
+  height: 150px;
+  float: left;
+  margin-right: 20px;
+}
+
+.scrollbox {
+  background-color: #fff;
+  width: 600px;
+  height: 600px;
+  overflow-y: auto;
+  margin: 0 auto;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.search {
+  text-align: center;
+  color: #F7F7EB;
+  font-size: 20px;
+  margin-top: 10px;
+}
+.farm-name {
+  font-weight: 700;
+  font-size: 16px;
+}
+.category, .location {
+  color: #818485;
+}
+.item-details {
+  font-size: 13px;
+}
+.item-price {
+  color: #53ad0e;
+  font-weight: bold;
+}
+.addToCart {
+  color: #53ad0e;
+}
+
+

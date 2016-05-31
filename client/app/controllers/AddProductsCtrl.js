@@ -4,7 +4,7 @@ angular.module('farmConnect.addProducts', [])
 
   $scope.product = {};
   
-  $scope.addProduct = function () {
+  $scope.addProduct = () => {
     Products.addProduct($scope.product);
   };
 

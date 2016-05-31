@@ -1,26 +1,26 @@
 angular.module ('farmConnect.services', [])
 
-.factory('Products', function($http) {
+.factory('Products', ($http) => {
   var Products = {};
 
-  Products.addProduct = function(product) {
-    return $http.post('/api/products', product)
-    .then(function(resp) {
+  Products.addProduct = (product) => (
+    $http.post('/api/products', product)
+    .then((resp) => {
       console.log('Product successfully added!');
-    }, function(err) {
+    }, (err) => {
       console.error('Error in adding product!', err);
-    });
-  };
+    })
+  );
   
-  Products.getProducts = function() {
-    return $http.get('/api/products')
-    .then(function(products) {
+  Products.getProducts = () => (
+    $http.get('/api/products')
+    .then((products) => {
       console.log('Successfully retrieved products!');
-      return products;
-    }, function(err) {
+      return products.data;
+    }, (err) => {
       console.error('Error in getting products!', err);
-    });
-  };
+    })
+  );
 
   return Products;
 
