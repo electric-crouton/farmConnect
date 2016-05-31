@@ -1,13 +1,21 @@
 <div id='signup'>
   <h1>Create an Account</h1>
   <form name="signupForm" ng-submit='signup()'>
-    <input name="email" type='email' ng-model='user.email' required novalidate>
-    <div ng-show="signupForm.email.$invalid && !signupForm.email.$pristine">Your email is required.</div>
-    <input name="password" type="password" ng-model='user.password' required novalidate>
-    <div ng-show="signupForm.password.$invalid && !signupForm.password.$pristine">Your password is required.</div>
-    <input type="submit" value="Signup">
+    <div>
+      Email
+      <input name="email" type='email' ng-model='user.email' required novalidate>
+    </div>
+    <!-- <div ng-show="signupForm.email.$invalid && !signupForm.email.$pristine">Your email is required.</div> -->
+    <div>
+      Password
+      <input name="password" type="password" ng-model='user.password' required novalidate>
+    </div>
+    <!-- <div ng-show="signupForm.password.$invalid && !signupForm.password.$pristine">Your password is required.</div> -->
+    <div class="submit">
+      <input type="submit" value="Signup">
+    </div>
   </form>
-  <div>
+  <div class="account">
   <a href="#/signin">Already have an account? Signin here!</a>
   </div>
 </div>

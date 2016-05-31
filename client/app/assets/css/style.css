@@ -16,6 +16,7 @@ h1 {
   font-size:1.6em;
   text-align: center;
   padding-top: 20px;
+  color: #F7F7EB;
 }
 
 input[type="submit"]{
@@ -32,10 +33,10 @@ input[type="submit"]{
 
 form input, .farmLocation {
   padding:15px;
-  margin-bottom:10px;
+  margin-bottom: 20px;
   border-radius:7px;
   border: none;
-  width: 80%;
+  width: 320px;
 }
 
 form {
@@ -135,6 +136,20 @@ input.ng-invalid.ng-touched {
 }
 .addToCart {
   color: #53ad0e;
+}
+#signin, .account, #signup {
+  color: #F7F7EB;
+}
+.account {
+  text-align: center;
+  margin: 0 auto;
+}
+.account a {
+  text-decoration: none;
+  color: #F7F7EB;
+}
+.submit {
+  margin-left: 40px;
 }
 
 
