@@ -16,7 +16,7 @@ angular.module ('farmConnect.services', [])
     return $http.get('/api/products')
     .then(function(products) {
       console.log('Successfully retrieved products!');
-      return products;
+      return products.data;
     }, function(err) {
       console.error('Error in getting products!', err);
     });
