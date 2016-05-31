@@ -24,4 +24,24 @@ angular.module ('farmConnect.services', [])
 
   return Products;
 
+})
+
+.factory('Auth', function($http, $location) {
+  var Auth = {};
+
+  Auth.signin = function(user) {
+    return $http.post('/api/users/signin', user)
+    .then(function(resp) {
+      return resp.data;
+    });
+  };
+
+  Auth.signup = function(user) {
+    return $http.post('/api/users/signup', user)
+    .then(function(resp) {
+      return resp.data;
+    });
+  };
+
+  return Auth;
 });
