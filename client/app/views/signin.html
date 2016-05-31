@@ -1,0 +1,14 @@
+<div id='signin'>
+  <h1>Welcome</h1>
+  <form name="signinForm" ng-submit='signin()'>
+    <input name="email" type='email' ng-model='user.email' required novalidate>
+    <div ng-show="signinForm.email.$invalid && !signinForm.email.$pristine">Your email is required.</div>
+    <input name="password" type="password" ng-model='user.password' required novalidate>
+    <div ng-show="signinForm.password.$invalid && !signinForm.password.$pristine">Your password is required.</div>
+
+    <input type="submit" value="Signin">
+  </form>
+  <div>
+    <a href="#/signup">Don't have an account? Create one now!</a>
+  </div>
+</div>
