@@ -7,8 +7,8 @@ angular.module('farmConnect.products', [])
   $scope.search = '';
 
   Products.getProducts()
-    .then(function(products) {
-      products.forEach(function(product) {
+    .then((products) => {
+      products.forEach((product) => {
         $scope.items.push(product);
       });
     });
