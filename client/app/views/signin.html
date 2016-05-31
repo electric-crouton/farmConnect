@@ -1,7 +1,7 @@
 <div id='signin'>
   <h1>Welcome</h1>
   <div class="container">
-    <form name="signinForm" ng-submit='signin()' novalidate>
+    <form name="signinForm" ng-submit='signin(user)' novalidate>
       Email
       <input name="email" type='email' ng-model='user.email' required>
       <!-- <div ng-show="signinForm.email.$invalid && !signinForm.email.$pristine">Your email is required.</div> -->
