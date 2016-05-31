@@ -17,12 +17,12 @@ angular.module('farmConnect.routes', [])
     .state('signin', {
       url: '/signin',
       templateUrl: 'views/signin.html',
-      controller: 'AuthController'
+      controller: 'AuthCtrl'
     })
     .state('signup', {
       url: '/signup',
       templateUrl: 'views/signup.html',
-      controller: 'AuthController'
+      controller: 'AuthCtrl'
     });
 
   $urlRouterProvider.otherwise('/products');
