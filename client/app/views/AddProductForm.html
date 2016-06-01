@@ -3,17 +3,31 @@
     <h1>Add a product to sell!</h1>
    
     <form name="addProductForm" ng-submit="addProduct(addProductForm.$valid)" novalidate> 
+      <div class="form-group" ng-class="{ 'has-error' : addProductForm.farmName.$invalid && !addProductForm.farmName.$pristine }">
+        <label>Farm Name</label>
+        <input type="text" name="farmName" class="form-control" ng-model="product.farmName" required>
+        <p ng-show="addProductForm.farmName.$invalid && !addProductForm.farmName.$pristine" class="error">Farm name is required</p>
+      </div>
+
+      <div class="form-group">
+        <label>Farm Location</label>
+        <textarea class="farmLocation" ng-model="product.farmLocation"></textarea> 
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input class="farmPhone" ng-model="product.farmPhone">
+      </div>
       <div class="form-group">
         <label>Product name</label>
-        <input type="text" name="productName" class="form-control" ng-model="product.name">
+        <input type="text" name="productName" class="form-control" ng-model="product.productName">
       </div>
       <div class="form-group">
         <label>Price of Product (per pound)</label>
-        <input type="number" class="form-control" ng-model="product.price"> 
+        <input type="number" class="form-control" ng-model="product.pricePerPound"> 
       </div>
       <div class="form-group">
         <label>Stock (in pounds)</label>
-        <input type="number" class="form-control" ng-model="product.stock"> 
+        <input type="number" class="form-control" ng-model="product.poundsAvailable"> 
       </div>
       <div><input type="submit" value="Submit"></div>
     </form>
