@@ -26,21 +26,30 @@ angular.module ('farmConnect.services', [])
 
 })
 
-.factory('Auth', function($http, $location) {
+.factory('Auth', function($http, $location, $window) {
   var Auth = {};
 
-  Auth.signin = function(user) {
+  Auth.signin = (user) => {
     return $http.post('/api/users/signin', user)
     .then(function(resp) {
-      return resp.data;
+      return resp.data.token;
     });
   };
 
-  Auth.signup = function(user) {
+  Auth.signup = (user) => {
     return $http.post('/api/users/signup', user)
     .then(function(resp) {
-      return resp.data;
+      return resp.data.token;
     });
+  };
+
+  Auth.isAuth = () => {
+    return !!$window.localStorage.getItem('com.farmConnect');
+  };
+
+  Auth.signout = () => {
+    $window.localStorage.removeItem('com.farmConnect');
+    $location.path('/signin');
   };
 
   return Auth;
