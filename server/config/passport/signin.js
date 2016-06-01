@@ -5,7 +5,6 @@ var router = express.Router();
 //to allow logging in
 
 router.get('/signin', function(req, res) {
-  console.log('request is:', req);
   res.render('login', { user : req.user });
 });
 
