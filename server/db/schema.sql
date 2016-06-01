@@ -13,7 +13,8 @@ CREATE TABLE farms (
 
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
-  product_name VARCHAR(100)
+  product_name VARCHAR(100),
+  organic BOOLEAN
 );
 
 CREATE TABLE posts (
