@@ -6,9 +6,9 @@ exports.getPosts = (req, res) => {
       console.error('error!', err);
     } else {
       var rows = result.rows;
-      var posts = data.map((datum) => {
+      var posts = rows.map((datum) => {
         return {
-          farmName: datum.farms_name,
+          farmName: datum.farm_name,
           farmLocation: datum.location,
           farmPhone: datum.phone,
           productName: datum.product_name,
