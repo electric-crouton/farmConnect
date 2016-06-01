@@ -5,17 +5,19 @@
 }
 
 body {
-  background-image: url("../img/grass-field.jpg");
+  background: url("../img/grass-field.jpg") no-repeat 50% 50% fixed; 
   background-size: cover;
-  background-attachment: fixed;
-  height: 768px;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  -webkit-background-size: cover;
 }
 
 h1 { 
-  margin-bottom: 20px; 
+  margin-bottom: 10px; 
   font-size:1.6em;
   text-align: center;
   padding-top: 20px;
+  color: #F7F7EB;
 }
 
 input[type="submit"]{
@@ -31,11 +33,11 @@ input[type="submit"]{
 }
 
 form input, .farmLocation {
-  padding:15px;
-  margin-bottom:10px;
+  padding:10px;
+  margin-bottom: 12px;
   border-radius:7px;
   border: none;
-  width: 80%;
+  width: 320px;
 }
 
 form {
@@ -106,8 +108,7 @@ input.ng-invalid.ng-touched {
 .scrollbox {
   background-color: #fff;
   width: 600px;
-  height: 600px;
-  overflow-y: auto;
+  height: 500px;
   margin: 0 auto;
   border-radius: 6px;
   padding: 20px;
@@ -136,5 +137,31 @@ input.ng-invalid.ng-touched {
 .addToCart {
   color: #53ad0e;
 }
+#signin, .account, #signup {
+  color: #F7F7EB;
+}
+.account {
+  text-align: center;
+  margin: 0 0 12px;
+}
+.account a {
+  text-decoration: none;
+  color: #F7F7EB;
+}
+.submit {
+  margin-left: 40px;
+}
+md-radio-button ._md-off {
+  background-color: #F7F7EB;
+}
+md-radio-button {
+  float: left;
+  margin: 3px 18px 5px 4px;
+}
+.farmInfo {
+  float: left;
+}
+
+
 
 

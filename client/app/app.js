@@ -4,6 +4,7 @@ angular.module('farmConnect', [
   'farmConnect.products',
   'farmConnect.routes',
   'farmConnect.services',
+  'farmConnect.auth',
   'ui.bootstrap',
   'ngMaterial'
 ]);

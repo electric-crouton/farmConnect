@@ -1,0 +1,45 @@
+<div id="signup">
+  <h1>Create an Account</h1>
+  <div class="account">
+    <a href="#/signin">Already have an account? Signin here!</a>
+  </div>
+  <form name="signupForm" ng-submit="signup(user)" novalidate>
+    <div>
+      Email
+      <input name="email" type="email" ng-model="user.email" required>
+    </div>
+    <!-- <div ng-show="signupForm.email.$invalid && !signupForm.email.$pristine">Your email is required.</div> -->
+    <div>
+      Password
+      <input name="password" type="password" ng-model="user.password" required>
+    </div>
+    <div>
+      <div>Are you a farmer?</div>
+      <md-radio-group ng-model="user.isFarmer">
+        <span>
+        <md-radio-button value="true" class="md-primary">Yes </md-radio-button>
+        <md-radio-button value="false">No </md-radio-button>
+        </span>
+      </md-radio-group>
+    </div>
+    <div class="farmInfo" ng-show="user.isFarmer == 'true'">
+      <div><label>Farm Name</label></div>
+      <input type="text" name="farmName" class="form-control" ng-model="user.farmName" required>
+      <p ng-show="signupForm.farmName.$invalid && !signupForm.farmName.$pristine" class="error">Farm name is required</p>
+
+      <div class="form-group">
+        <label>Farm Location</label>
+        <textarea class="farmLocation" ng-model="user.farmLocation" required></textarea> 
+      </div>
+      <div class="form-group">
+        <label>Phone Number</label>
+        <input type="text" class="phone" ng-model="user.phone" required> 
+      </div>
+    </div>
+    <!-- <div ng-show="signupForm.password.$invalid && !signupForm.password.$pristine">Your password is required.</div> -->
+    <div class="submit">
+      <input type="submit" value="Signup">
+    </div>
+  </form>
+</div>
+
