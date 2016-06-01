@@ -65,7 +65,6 @@ var addProductIfNecessary = (req, res, post, callback) => {
 };
 
 var addPost = (req, res, post) => {
-  console.log('add post', post);
   connection.query(
     `INSERT INTO posts\
     (farms_id, products_id, price_per_pound, pounds_available)\
