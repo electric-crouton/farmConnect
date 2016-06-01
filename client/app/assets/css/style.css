@@ -176,6 +176,11 @@ md-radio-button {
   margin-left: 5px;
   font-size: 12px;
 }
+.quantity input {
+  border-radius: 5px;
+  width: 40px;
+  margin-left: 5px;
+}
 
 
 
