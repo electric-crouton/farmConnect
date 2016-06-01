@@ -8,6 +8,10 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#/about" active-link="active" activate-parent="true">About</a></li>
         <li class="signout" ng-show="loggedIn == 'true'" ng-click="signout()">Signout</li>
+        <li class="cart"><img ng-src="assets/img/shopping-cart.png" /></li>
+        <li class="cart-summary"><p>{{ cartSummary.numOfItems }} items</p>
+          <div>${{ cartSummary.total }}</div>
+        </li>
       </ul>
     </div>
   </div>

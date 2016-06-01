@@ -117,7 +117,7 @@ input.ng-invalid.ng-touched {
 .search {
   text-align: center;
   color: #F7F7EB;
-  font-size: 20px;
+  font-size: 16px;
   margin-top: 10px;
 }
 .farm-name {
@@ -136,6 +136,10 @@ input.ng-invalid.ng-touched {
 }
 .addToCart {
   color: #53ad0e;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #DCDFE0;
 }
 #signin, .account, #signup {
   color: #F7F7EB;
@@ -160,6 +164,17 @@ md-radio-button {
 }
 .farmInfo {
   float: left;
+}
+.cart img {
+  height: 25px;
+  width: 25px;
+}
+.cart, .cart-summary {
+  float: right;
+  display: inline-block;
+  padding-top: 8px;
+  margin-left: 5px;
+  font-size: 12px;
 }
 
 
