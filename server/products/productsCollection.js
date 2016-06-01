@@ -7,14 +7,48 @@ exports.getProducts = (req, res) => {  // note that this is a dummy query for te
     } else {
       var data = result.rows;
       var posts = data.map((datum) => {
-        return {
-          farmName: datum.farm_name,
-          farmLocation: datum.location,
-          farmPhone: datum.phone,
-          productName: datum.product_name,
-          pricePerPound: datum.price_per_pound,
-          poundsAvailable: datum.pounds_available
-        };
+        return [
+            {
+             farmName: "Old McDonald's Farm",
+             farmLocation: "Marin",
+             farmPhone: "2223334444",
+             productName: "apples",
+             pricePerPound: 10,
+             poundsAvailable: 5
+           },
+            {
+             farmName: "Old McDonald's Farm",
+             farmLocation: "Marin",
+             farmPhone: "2223334444",
+             productName: "carrots",
+             pricePerPound: 3,
+             poundsAvailable: 20
+           },
+           {
+             farmName: "Uncle Bob's Farm",
+             farmLocation: "Marin",
+             farmPhone: "5556667777",
+             productName: "carrots",
+             pricePerPound: 4.99,
+             poundsAvailable: 40
+           },
+           {
+             farmName: "Uncle Bob's Farm",
+             farmLocation: "Marin",
+             farmPhone: "5556667777",
+             productName: "lettuce",
+             pricePerPound: 3.99,
+             poundsAvailable: 30
+           },
+        ];
+
+
+          // farmName: datum.farm_name,
+          // farmLocation: datum.location,
+          // farmPhone: datum.phone,
+          // productName: datum.product_name,
+          // pricePerPound: datum.price_per_pound,
+          // poundsAvailable: datum.pounds_available
       });
       res.send(posts);
     }
