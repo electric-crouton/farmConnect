@@ -22,6 +22,8 @@ angular.module('farmConnect.products', [])
     if ($rootScope.cart.indexOf(item) === -1) {
       $rootScope.cart.push(item);
       $rootScope.cartSummary.numOfItems++;
+      $rootScope.cartSummary.total += (item.quantity * item.pricePerPound);
+      item.quantity = 0;
     } else {
       console.log('Item already in cart!');
     }
