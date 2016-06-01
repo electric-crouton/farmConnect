@@ -16,6 +16,7 @@ exports.getProducts = (req, res) => {  // note that this is a dummy query for te
           poundsAvailable: datum.pounds_available
         };
       });
+      console.log(posts);
       res.send(posts);
     }
   });
