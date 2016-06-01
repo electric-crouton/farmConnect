@@ -1,0 +1,15 @@
+#!/bin/bash
+#This script installs npm packages in the client and server directories.
+
+echo "Installing all dependencies..."
+
+cd client
+npm install
+bower install
+echo "Client-side dependencies installed."
+
+cd ../server
+npm install
+echo "Server-side dependencies installed."
+
+echo "All dependencies have been installed!"
