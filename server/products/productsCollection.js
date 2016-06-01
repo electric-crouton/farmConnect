@@ -6,9 +6,10 @@ exports.getProducts = (req, res) => {  // note that this is a dummy query for te
       console.error('error!', err);
     } else {
       var data = result.rows;
-      var posts = data.map((datum) => {
-        return [
+      var posts = 
+        [
             {
+             id: 1,
              farmName: "Old McDonald's Farm",
              farmLocation: "Marin",
              farmPhone: "2223334444",
@@ -17,6 +18,7 @@ exports.getProducts = (req, res) => {  // note that this is a dummy query for te
              poundsAvailable: 5
            },
             {
+             id: 2,
              farmName: "Old McDonald's Farm",
              farmLocation: "Marin",
              farmPhone: "2223334444",
@@ -25,6 +27,7 @@ exports.getProducts = (req, res) => {  // note that this is a dummy query for te
              poundsAvailable: 20
            },
            {
+             id: 3,
              farmName: "Uncle Bob's Farm",
              farmLocation: "Marin",
              farmPhone: "5556667777",
@@ -33,13 +36,14 @@ exports.getProducts = (req, res) => {  // note that this is a dummy query for te
              poundsAvailable: 40
            },
            {
+             id: 4,
              farmName: "Uncle Bob's Farm",
              farmLocation: "Marin",
              farmPhone: "5556667777",
              productName: "lettuce",
              pricePerPound: 3.99,
              poundsAvailable: 30
-           },
+           }
         ];
 
 
@@ -49,8 +53,8 @@ exports.getProducts = (req, res) => {  // note that this is a dummy query for te
           // productName: datum.product_name,
           // pricePerPound: datum.price_per_pound,
           // poundsAvailable: datum.pounds_available
-      });
-      res.send(posts);
+      
+      res.json(posts);
     }
   });
 };
