@@ -18,8 +18,8 @@ CREATE TABLE products (
 
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
-  farm_id integer REFERENCES farm (id),
-  produce_id integer REFERENCES produce (id),
+  farms_id integer REFERENCES farms (id),
+  products_id integer REFERENCES products (id),
   price_per_pound decimal(10, 2),
   pounds_available integer
 );
