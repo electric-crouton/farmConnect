@@ -4,6 +4,7 @@ angular.module('farmConnect.products', [])
 
   $scope.items = [];
   $scope.search = '';
+  $scope.alert = {};
   $rootScope.cart = [];
   $rootScope.cartSummary = {
     numOfItems: 0,
@@ -24,8 +25,16 @@ angular.module('farmConnect.products', [])
       $rootScope.cartSummary.numOfItems++;
       $rootScope.cartSummary.total += (item.quantity * item.pricePerPound);
       item.quantity = 0;
+      $scope.alert = {
+        type: 'success',
+        msg: 'Item successfully added to cart!'
+      };
     } else {
       console.log('Item already in cart!');
+      $scope.alert = {
+        type: 'danger',
+        msg: 'Item already in cart!'
+      };
     }
   };
 });

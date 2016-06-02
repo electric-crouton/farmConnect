@@ -22,10 +22,11 @@
           <div>Contact this farm: {{ item.farmPhone }}</div>
           <div class="location">Location of farm: {{ item.farmLocation }}</div>
         </div>
-        <!-- <ngcart-addtocart id="{{ item.id }}" name="{{ item.productName }}" price="{{ item.pricePerPound }}" quantity="1" quantity-max="30" data="item"></ngcart-addtocart> -->
         <button class="addToCart" ng-click="addToCart(item)">Add to Cart</button>
       </span>
     </div>
+    <!-- TODO: implement alert box -->
+    <!-- <uib-alert type="{{alert.type}}" close="closeAlert()">{{alert.msg}}</uib-alert> -->
   </div>
 </div>  
 
