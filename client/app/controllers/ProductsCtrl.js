@@ -25,7 +25,11 @@ angular.module('farmConnect.products', [])
       $rootScope.cart.push(item);
       $rootScope.cartSummary.numOfItems++;
       $rootScope.cartSummary.itemsText = $rootScope.cartSummary.numOfItems === 1 ? 'item' : 'items';
-      $rootScope.cartSummary.total += (item.quantity * item.pricePerPound);
+      const sum = item.quantity * item.pricePerPound;
+      const parseTotal = parseInt($rootScope.cartSummary.total, 10);
+      
+      $rootScope.cartSummary.total = (sum + parseTotal).toFixed(2);
+
       item.quantity = 0;
       $scope.alert = {
         type: 'success',
