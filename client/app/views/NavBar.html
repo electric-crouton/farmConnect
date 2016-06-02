@@ -6,9 +6,10 @@
         <li><a href="#/sell" active-link="active" activate-parent="true">Sell Products</a></li>
         <li><a href="#/about" active-link="active" activate-parent="true">About</a></li>
         <li class="signout" ng-show="loggedIn == 'true'" ng-click="signout()">Signout</li>
-        <li class="cart"><img ng-src="assets/img/shopping-cart.png" /></li>
-        <li class="cart-summary">{{ cartSummary.numOfItems }} {{ cartSummary.itemsText }}
-          <div ng-show="cartSummary.total > 0">${{ cartSummary.total }}</div>
+        <li class="cart"><img ng-src="assets/img/shopping-cart.png" />
+          <span class="cart-summary">{{ cartSummary.numOfItems }} {{ cartSummary.itemsText }}
+            <div ng-show="cartSummary.total > 0">${{ cartSummary.total }}</div>
+          </span>
         </li>
       </ul>
     </div>

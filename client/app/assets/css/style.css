@@ -11,6 +11,7 @@ body {
   -o-background-size: cover;
   -webkit-background-size: cover;
   overflow-y: hidden;
+  padding-bottom: 200px;
 }
 
 h1 { 
@@ -38,6 +39,8 @@ form input, .farmLocation {
   border-radius:7px;
   border: none;
   width: 320px;
+  margin-bottom: 10px;
+  color: #000;
 }
 
 form {
@@ -57,7 +60,7 @@ input.ng-invalid.ng-touched {
 
 .navbar {
   margin: 0 auto;
-  width: 60%;
+  width: 50%;
   height: 40px;
   background-color: #eee;
   border-radius:7px;
@@ -174,8 +177,8 @@ md-radio-button {
 }
 .cart, .cart-summary {
   float: right;
-  display: inline-block;
-  padding-top: 8px;
+  display: block;
+  padding-top: 5px;
   margin-left: 5px;
   font-size: 12px;
 }
@@ -184,7 +187,9 @@ md-radio-button {
   width: 40px;
   margin-left: 5px;
 }
-
+.alert {
+  width: 400px;
+}
 
 
 
