@@ -6,7 +6,8 @@ angular.module('farmConnect', [
   'farmConnect.services',
   'farmConnect.auth',
   'ngAnimate',
-  'ui.bootstrap',
+  // 'ui.bootstrap',
+  'ui.bootstrap.tpls',
   'ngMaterial',
   'ngCart'
 ]);

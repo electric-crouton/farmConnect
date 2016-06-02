@@ -11,23 +11,23 @@
 
       <div class="form-group">
         <label>Farm Location</label>
-        <textarea class="farmLocation" ng-model="product.farmLocation"></textarea> 
+        <textarea class="farmLocation" ng-model="product.farmLocation" required></textarea> 
       </div>
       <div class="form-group">
         <label>Phone Number</label>
-        <input class="farmPhone" ng-model="product.farmPhone">
+        <input class="farmPhone" ng-model="product.farmPhone" required>
       </div>
       <div class="form-group">
         <label>Product name</label>
-        <input type="text" name="productName" class="form-control" ng-model="product.productName">
+        <input type="text" name="productName" class="form-control" ng-model="product.productName" required>
       </div>
       <div class="form-group">
         <label>Price of Product (per pound)</label>
-        <input type="number" class="form-control" ng-model="product.pricePerPound"> 
+        <input type="number" class="form-control" ng-model="product.pricePerPound" min="0" required> 
       </div>
       <div class="form-group">
         <label>Stock (in pounds)</label>
-        <input type="number" class="form-control" ng-model="product.poundsAvailable"> 
+        <input type="number" class="form-control" ng-model="product.poundsAvailable" min="0" required> 
       </div>
       <div><input type="submit" value="Submit"></div>
     </form>
