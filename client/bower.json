@@ -11,6 +11,7 @@
     "angular-bootstrap": "latest",
     "angular-ui-router": "latest",
     "angular-ui-select": "latest",
-    "angular-sanitize": "latest"
+    "angular-sanitize": "latest",
+    "ngCart": "ngcart#^1.0.0"
   }
 }
