@@ -39,4 +39,8 @@ angular.module('farmConnect.products', [])
       };
     }
   };
+
+  $scope.closeAlert = () => {
+    $scope.alert = {};
+  };
 });
