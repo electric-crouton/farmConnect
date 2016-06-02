@@ -1,11 +1,12 @@
 const connection = require('../db/connection.js');
 
 exports.getPosts = (req, res) => { 
-  connection.query('SELECT * FROM farms, products, posts WHERE products.id = posts.products_id AND farms.id = posts.farms_id', (err, result) => {
+  connection.query('SELECT * FROM farms, products, posts WHERE products.id = posts.product_id AND farms.id = posts.farm_id', (err, result) => {
     if (err) {
       console.error('error!', err);
     } else {
       var rows = result.rows;
+      console.log(rows);
       var posts = rows.map((datum) => {
         return {
           farmName: datum.farm_name,
@@ -67,7 +68,7 @@ var addProductIfNecessary = (req, res, post, callback) => {
 var addPost = (req, res, post) => {
   connection.query(
     `INSERT INTO posts\
-    (farms_id, products_id, price_per_pound, pounds_available)\
+    (farm_id, product_id, price_per_pound, pounds_available)\
     VALUES ((SELECT id FROM farms WHERE farm_name = '${post.farmName}'),\
     (SELECT id FROM products WHERE product_name = '${post.productName}'),\
     ${post.pricePerPound},\
