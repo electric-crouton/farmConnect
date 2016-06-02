@@ -10,6 +10,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
+  overflow-y: hidden;
 }
 
 h1 { 
@@ -107,9 +108,10 @@ input.ng-invalid.ng-touched {
 
 .scrollbox {
   background-color: #fff;
-  width: 600px;
+  width: 500px;
   height: 500px;
   margin: 0 auto;
+  overflow-y: scroll;
   border-radius: 6px;
   padding: 20px;
 }
