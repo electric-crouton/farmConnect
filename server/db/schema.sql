@@ -13,13 +13,15 @@ CREATE TABLE farms (
 
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
-  product_name VARCHAR(100)
+  product_name VARCHAR(100),
+  organic BOOLEAN,
+  img VARCHAR(100)
 );
 
 CREATE TABLE posts (
   id SERIAL PRIMARY KEY,
-  farm_id integer REFERENCES farm (id),
-  produce_id integer REFERENCES produce (id),
+  farm_id integer REFERENCES farms (id),
+  product_id integer REFERENCES products (id),
   price_per_pound decimal(10, 2),
   pounds_available integer
 );
