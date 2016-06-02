@@ -9,7 +9,7 @@
         <li><a href="#/about" active-link="active" activate-parent="true">About</a></li>
         <li class="signout" ng-show="loggedIn == 'true'" ng-click="signout()">Signout</li>
         <li class="cart"><img ng-src="assets/img/shopping-cart.png" /></li>
-        <li class="cart-summary"><p>{{ cartSummary.numOfItems }} items</p>
+        <li class="cart-summary"><p>{{ cartSummary.numOfItems }} {{ cartSummary.itemsText }}</p>
           <div>${{ cartSummary.total }}</div>
         </li>
       </ul>

@@ -8,6 +8,7 @@ angular.module('farmConnect.products', [])
   $rootScope.cart = [];
   $rootScope.cartSummary = {
     numOfItems: 0,
+    itemsText: 'items',
     total: 0
   };
 
@@ -23,6 +24,7 @@ angular.module('farmConnect.products', [])
     if ($rootScope.cart.indexOf(item) === -1) {
       $rootScope.cart.push(item);
       $rootScope.cartSummary.numOfItems++;
+      $rootScope.cartSummary.itemsText = $rootScope.cartSummary.numOfItems === 1 ? 'item' : 'items';
       $rootScope.cartSummary.total += (item.quantity * item.pricePerPound);
       item.quantity = 0;
       $scope.alert = {
