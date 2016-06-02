@@ -75,21 +75,19 @@ input.ng-invalid.ng-touched {
 }
 
 .navbar li a, .signout {
-  width: 100px;
-  height: 20px;
+  width: 120px;
   color: #53ad0e;
-  line-height: 20px;
   padding: 10px;
   display: block;
   text-align: center;
   text-decoration: none;
 }
 
-.navbar li a:hover, .signout:hover {
+.navbar li:hover, .signout:hover {
   background-color: #ddd;
 }
 
-.navbar li a.selected {
+.navbar li.selected {
   background-color: #ccc;
 }
 
