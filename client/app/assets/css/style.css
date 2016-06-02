@@ -10,6 +10,8 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
+  overflow-y: hidden;
+  padding-bottom: 300px;
 }
 
 h1 { 
@@ -109,6 +111,15 @@ input.ng-invalid.ng-touched {
   background-color: #fff;
   width: 600px;
   height: 500px;
+  margin: 0 auto;
+  border-radius: 6px;
+  padding: 20px;
+}
+
+.aboutbox {
+  background-color: #fff;
+  width: 600px;
+  height: 240px;
   margin: 0 auto;
   border-radius: 6px;
   padding: 20px;
