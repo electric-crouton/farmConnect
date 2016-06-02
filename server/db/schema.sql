@@ -14,6 +14,7 @@ CREATE TABLE farms (
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
   product_name VARCHAR(100),
+  organic BOOLEAN,
   img VARCHAR(100)
 );
 
