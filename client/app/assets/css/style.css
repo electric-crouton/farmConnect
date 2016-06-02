@@ -10,6 +10,7 @@ body {
   -moz-background-size: cover;
   -o-background-size: cover;
   -webkit-background-size: cover;
+  overflow-y: hidden;
 }
 
 h1 { 
@@ -34,7 +35,6 @@ input[type="submit"]{
 
 form input, .farmLocation {
   padding:10px;
-  margin-bottom: 12px;
   border-radius:7px;
   border: none;
   width: 320px;
@@ -74,21 +74,19 @@ input.ng-invalid.ng-touched {
 }
 
 .navbar li a, .signout {
-  width: 100px;
-  height: 20px;
+  width: 120px;
   color: #53ad0e;
-  line-height: 20px;
   padding: 10px;
   display: block;
   text-align: center;
   text-decoration: none;
 }
 
-.navbar li a:hover, .signout:hover {
+.navbar li:hover, .signout:hover {
   background-color: #ddd;
 }
 
-.navbar li a.selected {
+.navbar li.selected {
   background-color: #ccc;
 }
 
@@ -107,9 +105,10 @@ input.ng-invalid.ng-touched {
 
 .scrollbox {
   background-color: #fff;
-  width: 600px;
+  width: 500px;
   height: 500px;
   margin: 0 auto;
+  overflow-y: scroll;
   border-radius: 6px;
   padding: 20px;
 }
@@ -117,9 +116,13 @@ input.ng-invalid.ng-touched {
 .search {
   text-align: center;
   color: #F7F7EB;
-  font-size: 20px;
-  margin-top: 10px;
+  font-size: 16px;
+  margin-bottom: 10px;
 }
+.search input {
+  color: #000;
+}
+
 .farm-name {
   font-weight: 700;
   font-size: 16px;
@@ -136,6 +139,10 @@ input.ng-invalid.ng-touched {
 }
 .addToCart {
   color: #53ad0e;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: #DCDFE0;
 }
 #signin, .account, #signup {
   color: #F7F7EB;
@@ -160,6 +167,22 @@ md-radio-button {
 }
 .farmInfo {
   float: left;
+}
+.cart img {
+  height: 25px;
+  width: 25px;
+}
+.cart, .cart-summary {
+  float: right;
+  display: inline-block;
+  padding-top: 8px;
+  margin-left: 5px;
+  font-size: 12px;
+}
+.quantity input {
+  border-radius: 5px;
+  width: 40px;
+  margin-left: 5px;
 }
 
 
