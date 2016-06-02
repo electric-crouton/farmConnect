@@ -34,11 +34,13 @@ var addFarmIfNecessary = (req, res, callback1, callback2) => {
           if (err) {
             console.error('error:', err);
           } else {
+            console.log('farm added!');
             callback1(req, res, post, callback2);
           }
         }
       );
     } else {
+      console.log('farm already exists!');
       callback1(req, res, post, callback2);
     }
   });
@@ -77,9 +79,13 @@ var addPost = (req, res, post) => {
     (err, result) => {
       if (err) {
         console.error('error:', err);
-        res.sendStatus(500);
+        if (res) {
+          res.sendStatus(500); 
+        }
       } else {
-        res.sendStatus(200);
+        if (res) {
+          res.sendStatus(200); 
+        }
       }
     }
   );

@@ -11,6 +11,7 @@ body {
   -o-background-size: cover;
   -webkit-background-size: cover;
   overflow-y: hidden;
+  padding-bottom: 200px;
 }
 
 h1 { 
