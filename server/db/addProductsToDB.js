@@ -2,7 +2,7 @@ var productsCollection = require('../products/productsCollection.js');
 
 var dummyData = [
   {
-    farmName: "Old McDonalds Farm",
+    farmName: "Old McDonald's Farm",
     farmLocation: "Marin",
     farmPhone: "2223334444",
     productName: "apples",
@@ -10,7 +10,7 @@ var dummyData = [
     poundsAvailable: 5
   },
   {
-    farmName: "Old McDonalds Farm",
+    farmName: "Old McDonald's Farm",
     farmLocation: "Marin",
     farmPhone: "2223334444",
     productName: "carrots",
@@ -18,7 +18,7 @@ var dummyData = [
     poundsAvailable: 20
   },
   {
-    farmName: "Uncle Bob Farm",
+    farmName: "Uncle Bob's Farm",
     farmLocation: "Marin",
     farmPhone: "5556667777",
     productName: "carrots",
@@ -26,7 +26,7 @@ var dummyData = [
     poundsAvailable: 40
   },
   {
-    farmName: "Uncle Bob Farm",
+    farmName: "Uncle Bob's Farm",
     farmLocation: "Marin",
     farmPhone: "5556667777",
     productName: "lettuce",
@@ -36,7 +36,6 @@ var dummyData = [
 ];
 
 dummyData.forEach((post, index) => {
-  // console.log('post in dummyData', post);
   setTimeout(() => productsCollection.handlePost({body: post}, null), index * 200);
 });
 
