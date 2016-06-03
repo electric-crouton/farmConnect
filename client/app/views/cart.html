@@ -1,6 +1,9 @@
 <div class="col-md-12 cart-table">
   <h1>Cart Summary</h1>
-  <div class="cart-scrollbox col-lg-12">
+  <div class="alert alert-warning ng-hide" role="alert" ng-show="getTotalItems() === 0">
+    Your cart is empty
+  </div>
+  <div class="cart-scrollbox col-lg-12" ng-show="getTotalItems() > 0">
   <div class="table-responsive col-lg-12">
     <table class="table table-striped">
       <thead>
@@ -45,5 +48,6 @@
         </tr>
       </tbody>
     </table>
+  </div>
   </div>
 </div>

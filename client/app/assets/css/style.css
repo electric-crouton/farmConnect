@@ -186,6 +186,7 @@ md-radio-button {
 }
 .alert {
   width: 400px;
+  margin: 0 auto;
 }
 .cart-table h1 {
   color: #F7F7EB;
@@ -199,7 +200,7 @@ md-radio-button {
 .item-row {
   background-color: #f9f9f9;
 }
-.total {
+tfoot {
   font-weight: bold;
 }
 
