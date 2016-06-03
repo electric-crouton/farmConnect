@@ -15,6 +15,15 @@
           <th>Total</th>
         </tr>
       </thead>
+      <tbody>
+        <tr class="item-row" ng-repeat="item in cart">
+          <td><span class="glyphicon glyphicon-remove" ng-click="removeItemFromCart($index)"></span></td>
+          <td>{{ item.farmName }} {{ item.productName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.pricePerPound }}</td>
+          <td>${{ calculateItemTotal(item) }}</td>
+        </tr>
+      </tbody>
       <tfoot>
         <tr>
           <td></td>
@@ -38,15 +47,6 @@
           <td class="total">${{ calculateTotal() }}</td>
         </tr>
       </tfoot>
-      <tbody>
-        <tr class="item-row" ng-repeat="item in cart">
-          <td><span class="glyphicon glyphicon-remove" ng-click="removeItemFromCart($index)"></span></td>
-          <td>{{ item.farmName }} {{ item.productName }}</td>
-          <td>{{ item.quantity }}</td>
-          <td>${{ item.pricePerPound }}</td>
-          <td>${{ calculateItemTotal(item) }}</td>
-        </tr>
-      </tbody>
     </table>
   </div>
   </div>

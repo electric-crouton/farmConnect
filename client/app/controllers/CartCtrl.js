@@ -1,7 +1,6 @@
 angular.module('farmConnect.cart', [])
 
 .controller('CartCtrl', function($scope, $rootScope) {
-  console.log('$rootScope.cart: ', $rootScope.cart);
   $rootScope.cart = $rootScope.cart || [];
   $scope.shippingCost = 5.99;
 
