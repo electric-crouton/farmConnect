@@ -67,19 +67,20 @@ var insertIntoDatabase = function (packet) {
   });
 };
 
-exports.signUp = function (request, response) {
-  var packet = request.body;
+exports.signUp = function (req, res) {
+  console.log('inside signup of authcontroller in server');
+  var packet = req.body;
   checkForExistingEmailInDatabase(packet).then(function (checkResult) {
     if (checkResult) {
-      response.redirect('/users/signin'); //should have ?exists=1 inside signin to render error message
+      res.redirect('/users/signin'); //should have ?exists=1 inside signin to render error message
       return Promise.resolve('Finished');
     }
     return insertIntoDatabase(packet);
   }).then(function () {
     var token = jwt.encode(user.email, 'secret');
-    response.json({token: token});
+    res.json({token: token});
   });
-  //front end needs to handle redirection- can't have both data and redirect headers on response
+  //front end needs to handle redirection- can't have both data and redirect headers on res
 };
 
 
@@ -120,8 +121,8 @@ var isValidPassword = function (password, dbPassword) {
 
 
 //handle the sign in
-exports.signIn = function (request, response) {
-  queryDatabaseForPassword(request.body).then(function (pwObj) {
+exports.signIn = function (req, res) {
+  queryDatabaseForPassword(req.body).then(function (pwObj) {
     if (typeof pwObj === 'string') {
       return Promise.reject (pwObj);
     } else {
@@ -131,8 +132,8 @@ exports.signIn = function (request, response) {
   }).then(function (isValid) {
     console.log('isvalid is:', isValid);
     if (isValid) {
-      var token = jwt.encode(request.body.email, 'secret');
-      response.json({token: token});
+      var token = jwt.encode(req.body.email, 'secret');
+      res.json({token: token});
     } else {
       console.error('This username and password combination could not be found. Please try again.');
     }
