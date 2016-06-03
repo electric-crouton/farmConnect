@@ -187,12 +187,20 @@ md-radio-button {
 .alert {
   width: 400px;
 }
-.cart-table h1, .cart-table th {
-  color: #F7F7EB
+.cart-table h1 {
+  color: #F7F7EB;
+}
+.cart-scrollbox {
+  background-color: #F7F7EB;
+  overflow-y: scroll;
+  border-radius: 7px;
 }
 
 .item-row {
   background-color: #f9f9f9;
+}
+.total {
+  font-weight: bold;
 }
 
 

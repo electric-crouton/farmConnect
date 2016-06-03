@@ -1,5 +1,6 @@
 <div class="col-md-12 cart-table">
   <h1>Cart Summary</h1>
+  <div class="cart-scrollbox col-lg-12">
   <div class="table-responsive col-lg-12">
     <table class="table table-striped">
       <thead>
@@ -11,6 +12,29 @@
           <th>Total</th>
         </tr>
       </thead>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Tax (9%)</td>
+          <td>Subtotal</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Shipping:</td>
+          <td>$5.99</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="total">Total:</td>
+          <td class="total">$500.00</td>
+        </tr>
+      </tfoot>
       <tbody>
         <tr class="item-row" ng-repeat="item in cart">
           <td><span class="glyphicon glyphicon-remove"></span></td>
