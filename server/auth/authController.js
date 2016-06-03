@@ -1,6 +1,7 @@
 var connection = require('../db/connection.js');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
 var jwt = require('json-web-token');
+var Promise = require('bluebird');
 
 //function that checks for existing email address within database- returns either true or false
 //if false, there's nothing in the database corresponding to that email
@@ -66,7 +67,6 @@ var insertIntoDatabase = function (packet) {
   });
 };
 
-//create a sign in function
 exports.signUp = function (request, response) {
   var packet = request.body;
   checkForExistingEmailInDatabase(packet).then(function (checkResult) {
