@@ -1,0 +1,25 @@
+<div class="col-md-12 cart-table">
+  <h1>Cart Summary</h1>
+  <div class="table-responsive col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Quantity</th>
+          <th>Amount</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="item-row" ng-repeat="item in cart">
+          <td><span class="glyphicon glyphicon-remove"></span></td>
+          <td>{{ item.farmName }} {{ item.productName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.pricePerPound }}</td>
+          <td>Item Total</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

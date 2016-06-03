@@ -23,6 +23,11 @@ angular.module('farmConnect.routes', [])
       url: '/signup',
       templateUrl: 'views/signup.html',
       controller: 'AuthCtrl'
+    })
+    .state('cart', {
+      url: '/cart',
+      templateUrl: 'views/cart.html',
+      controller: 'CartCtrl'
     });
 
   $urlRouterProvider.otherwise('/products');

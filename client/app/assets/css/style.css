@@ -60,7 +60,7 @@ input.ng-invalid.ng-touched {
 
 .navbar {
   margin: 0 auto;
-  width: 50%;
+  width: 60%;
   height: 40px;
   background-color: #eee;
   border-radius:7px;
@@ -177,9 +177,6 @@ md-radio-button {
 }
 .cart, .cart-summary {
   float: right;
-  display: block;
-  padding-top: 5px;
-  margin-left: 5px;
   font-size: 12px;
 }
 .quantity input {
@@ -190,6 +187,12 @@ md-radio-button {
 .alert {
   width: 400px;
 }
+.cart-table h1, .cart-table th {
+  color: #F7F7EB
+}
 
+.item-row {
+  background-color: #f9f9f9;
+}
 
 

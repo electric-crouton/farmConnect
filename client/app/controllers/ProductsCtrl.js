@@ -14,7 +14,6 @@ angular.module('farmConnect.products', [])
 
   Products.getProducts()
     .then((products) => {
-      console.log('products in controller: ', products);
       products.forEach((product) => {
         $scope.items.push(product);
       });
@@ -30,7 +29,6 @@ angular.module('farmConnect.products', [])
       
       $rootScope.cartSummary.total = (sum + parseTotal).toFixed(2);
 
-      item.quantity = 0;
       $scope.alert = {
         type: 'success',
         msg: 'Item successfully added to cart!'
