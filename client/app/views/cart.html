@@ -43,8 +43,8 @@
           <td><span class="glyphicon glyphicon-remove" ng-click="removeItemFromCart($index)"></span></td>
           <td>{{ item.farmName }} {{ item.productName }}</td>
           <td>{{ item.quantity }}</td>
-          <td>{{ item.pricePerPound }}</td>
-          <td>{{ calculateItemTotal(item) }}</td>
+          <td>${{ item.pricePerPound }}</td>
+          <td>${{ calculateItemTotal(item) }}</td>
         </tr>
       </tbody>
     </table>
