@@ -20,7 +20,7 @@
 
 ## Usage
 
-> Some usage instructions
+To seed your database with dummy data, run 'node server/db/seedDB.js'
 
 ## Requirements
 
