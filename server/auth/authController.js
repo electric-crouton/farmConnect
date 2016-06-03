@@ -131,7 +131,8 @@ exports.signIn = function (request, response) {
   }).then(function (isValid) {
     console.log('isvalid is:', isValid);
     if (isValid) {
-      response.redirect('/');
+      var token = jwt.encode(request.body.email, 'secret');
+      response.json({token: token});
     } else {
       console.error('This username and password combination could not be found. Please try again.');
     }
