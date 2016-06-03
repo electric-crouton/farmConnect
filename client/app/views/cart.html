@@ -40,7 +40,7 @@
       </tfoot>
       <tbody>
         <tr class="item-row" ng-repeat="item in cart">
-          <td><span class="glyphicon glyphicon-remove"></span></td>
+          <td><span class="glyphicon glyphicon-remove" ng-click="removeItemFromCart($index)"></span></td>
           <td>{{ item.farmName }} {{ item.productName }}</td>
           <td>{{ item.quantity }}</td>
           <td>{{ item.pricePerPound }}</td>
