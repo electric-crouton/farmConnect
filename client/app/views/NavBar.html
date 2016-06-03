@@ -9,7 +9,7 @@
         <li class="cart"><a href="#/cart" active-link="active" activate-parent="true">
           <img ng-src="assets/img/shopping-cart.png" />
           <span class="cart-summary">{{ cartSummary.numOfItems }} {{ cartSummary.itemsText }}
-            <div ng-show="cartSummary.total > 0">${{ cartSummary.total }}</div>
+            <div ng-show="cartSummary.subtotal > 0">${{ cartSummary.subtotal }}</div>
           </span></a>
         </li>
       </ul>

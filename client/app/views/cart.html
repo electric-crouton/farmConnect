@@ -11,7 +11,7 @@
           <th></th>
           <th></th>
           <th>Quantity</th>
-          <th>Amount</th>
+          <th>Price/lb</th>
           <th>Total</th>
         </tr>
       </thead>
@@ -20,22 +20,22 @@
           <td></td>
           <td></td>
           <td></td>
-          <td>Tax (9%)</td>
           <td>Subtotal</td>
+          <td>${{ cartSummary.subtotal }}</td>
         </tr>
         <tr>
           <td></td>
           <td></td>
           <td></td>
           <td>Shipping:</td>
-          <td>$5.99</td>
+          <td>${{ shippingCost }}</td>
         </tr>
         <tr>
           <td></td>
           <td></td>
           <td></td>
           <td class="total">Total:</td>
-          <td class="total">$500.00</td>
+          <td class="total">${{ calculateTotal() }}</td>
         </tr>
       </tfoot>
       <tbody>
@@ -44,7 +44,7 @@
           <td>{{ item.farmName }} {{ item.productName }}</td>
           <td>{{ item.quantity }}</td>
           <td>{{ item.pricePerPound }}</td>
-          <td>Item Total</td>
+          <td>{{ calculateItemTotal(item) }}</td>
         </tr>
       </tbody>
     </table>
