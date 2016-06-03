@@ -20,7 +20,7 @@
 
 ## Usage
 
-To seed your database with dummy data, run 'node server/db/addProductsToDB.js'
+To seed your database with dummy data, run 'node server/db/seedDB.js'
 
 ## Requirements
 
