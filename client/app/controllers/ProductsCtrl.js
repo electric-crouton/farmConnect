@@ -1,20 +1,20 @@
 angular.module('farmConnect.products', [])
 
-.controller('ProductsCtrl', function($scope, Products, $rootScope) {
+.controller('ProductsCtrl', function($scope, Products, $rootScope, Cart) {
 
   $scope.items = [];
   $scope.search = '';
   $scope.alert = {};
-  $rootScope.cart = [];
-  $rootScope.cartSummary = {
+  $rootScope.cart = $rootScope.cart || [];
+  $rootScope.cartSummary = $rootScope.cartSummary || {
     numOfItems: 0,
     itemsText: 'items',
-    total: 0
+    subtotal: 0
   };
 
   Products.getProducts()
     .then((products) => {
-      console.log('products in controller: ', products);
+      console.log('products: ', products);
       products.forEach((product) => {
         $scope.items.push(product);
       });
@@ -25,12 +25,9 @@ angular.module('farmConnect.products', [])
       $rootScope.cart.push(item);
       $rootScope.cartSummary.numOfItems++;
       $rootScope.cartSummary.itemsText = $rootScope.cartSummary.numOfItems === 1 ? 'item' : 'items';
-      const sum = item.quantity * item.pricePerPound;
-      const parseTotal = parseInt($rootScope.cartSummary.total, 10);
       
-      $rootScope.cartSummary.total = (sum + parseTotal).toFixed(2);
+      $rootScope.cartSummary.subtotal = Cart.calculateSubtotal();
 
-      item.quantity = 0;
       $scope.alert = {
         type: 'success',
         msg: 'Item successfully added to cart!'

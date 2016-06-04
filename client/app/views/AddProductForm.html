@@ -1,6 +1,16 @@
 <div id="wrap">
   <div class="form_wrap">
     <h1>Add a product to sell!</h1>
+    <div ng-show="alert.type == 'success'" class="alert alert-success alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="closeAlert()">
+      <span>&times;</span></button>
+      {{alert.msg}}
+    </div>
+    <div ng-show="alert.type == 'danger'" class="alert alert-danger alert-dismissible" role="alert">
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="closeAlert()">
+      <span>&times;</span></button>
+      {{alert.msg}}
+    </div>
    
     <form name="addProductForm" ng-submit="addProduct(addProductForm.$valid)" novalidate> 
       <div class="form-group" ng-class="{ 'has-error' : addProductForm.farmName.$invalid && !addProductForm.farmName.$pristine }">

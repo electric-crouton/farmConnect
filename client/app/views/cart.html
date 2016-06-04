@@ -1,0 +1,53 @@
+<div class="col-md-12 cart-table">
+  <h1>Cart Summary</h1>
+  <div class="alert alert-warning ng-hide" role="alert" ng-show="getTotalItems() === 0">
+    Your cart is empty
+  </div>
+  <div class="cart-scrollbox col-lg-12" ng-show="getTotalItems() > 0">
+  <div class="table-responsive col-lg-12">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th></th>
+          <th></th>
+          <th>Quantity</th>
+          <th>Price/lb</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="item-row" ng-repeat="item in cart">
+          <td><span class="glyphicon glyphicon-remove" ng-click="removeItemFromCart($index)"></span></td>
+          <td>{{ item.farmName }} {{ item.productName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ item.pricePerPound }}</td>
+          <td>${{ calculateItemTotal(item) }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Subtotal</td>
+          <td>${{ cartSummary.subtotal }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td>Shipping:</td>
+          <td>${{ shippingCost }}</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td class="total">Total:</td>
+          <td class="total">${{ calculateTotal() }}</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  </div>
+</div>
