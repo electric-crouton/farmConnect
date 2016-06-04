@@ -26,7 +26,7 @@ angular.module ('farmConnect.services', [])
 
 })
 
-.factory('Auth', function($http, $location, $window) {
+.factory('Auth', ($http, $location, $window) => {
   var Auth = {};
 
   Auth.signin = (user) => {
@@ -53,4 +53,23 @@ angular.module ('farmConnect.services', [])
   };
 
   return Auth;
+})
+
+.factory('Cart', ($rootScope) => {
+  var Cart = {};
+
+  Cart.calculateItemTotal = (item) => {
+    const itemTotal = parseFloat(item.quantity) * parseFloat(item.pricePerPound);
+    return itemTotal.toFixed(2);
+  };
+
+  Cart.calculateSubtotal = () => {
+    var cartSubtotal = 0;
+    $rootScope.cart.forEach((item) => {
+      cartSubtotal = parseFloat(cartSubtotal) + parseFloat(Cart.calculateItemTotal(item));
+    });
+    return cartSubtotal.toFixed(2);
+  };
+
+  return Cart;
 });

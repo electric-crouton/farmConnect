@@ -1,6 +1,6 @@
 angular.module('farmConnect.cart', [])
 
-.controller('CartCtrl', function($scope, $rootScope) {
+.controller('CartCtrl', function($scope, $rootScope, Cart) {
   $rootScope.cart = $rootScope.cart || [];
   $scope.shippingCost = 5.99;
 
@@ -9,16 +9,7 @@ angular.module('farmConnect.cart', [])
   };
 
   $scope.calculateItemTotal = (item) => {
-    const itemTotal = parseFloat(item.quantity) * parseFloat(item.pricePerPound);
-    return itemTotal.toFixed(2);
-  };
-
-  const calculateSubtotal = () => {
-    var cartSubtotal = 0;
-    $rootScope.cart.forEach((item) => {
-      cartSubtotal = parseFloat(cartSubtotal) + parseFloat($scope.calculateItemTotal(item));
-    });
-    return cartSubtotal.toFixed(2);
+    return Cart.calculateItemTotal(item);
   };
 
   $scope.calculateTotal = () => {
@@ -27,9 +18,10 @@ angular.module('farmConnect.cart', [])
 
   $scope.removeItemFromCart = (itemIndex) => {
     $rootScope.cart.splice(itemIndex, 1);
-    $rootScope.cartSummary.subtotal = calculateSubtotal();
+    $rootScope.cartSummary.subtotal = Cart.calculateSubtotal();
     $scope.calculateTotal();
-    $rootScope.cartSummary.numOfItems = $rootScope.cart.length;
+    $rootScope.cartSummary.numOfItems--;
+    $rootScope.cartSummary.itemsText = $rootScope.cartSummary.numOfItems === 1 ? 'item' : 'items';
   };
 
 });
