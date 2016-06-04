@@ -14,6 +14,7 @@ angular.module('farmConnect.products', [])
 
   Products.getProducts()
     .then((products) => {
+      console.log('products: ', products);
       products.forEach((product) => {
         $scope.items.push(product);
       });
