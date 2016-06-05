@@ -14,10 +14,11 @@ angular.module('farmConnect.routes', [])
       controller: 'AddProductsCtrl',
       authenticate: true
     })
-    .state('products', {
-      url: '/products',
-      templateUrl: 'views/productsPage.html',
-      controller: 'ProductsCtrl'
+    .state('about', {
+      url: '/about',
+      templateUrl: 'views/About.html',
+      controller: 'AboutCtrl',
+      authenticate: true
     })
     .state('signin', {
       url: '/signin',
