@@ -150,6 +150,9 @@ input.ng-invalid.ng-touched {
 #signin, .account, #signup {
   color: #F7F7EB;
 }
+.isFarmer {
+  padding-bottom: 10px;
+}
 .account {
   text-align: center;
   margin: 0 0 12px;
