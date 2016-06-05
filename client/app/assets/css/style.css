@@ -116,6 +116,15 @@ input.ng-invalid.ng-touched {
   padding: 20px;
 }
 
+.aboutbox {
+  background-color: #fff;
+  width: 600px;
+  height: 240px;
+  margin: 0 auto;
+  border-radius: 6px;
+  padding: 20px;
+}
+
 .search {
   text-align: center;
   color: #F7F7EB;
