@@ -60,7 +60,7 @@ input.ng-invalid.ng-touched {
 
 .navbar {
   margin: 0 auto;
-  width: 60%;
+  width: 70%;
   height: 40px;
   background-color: #eee;
   border-radius:7px;
@@ -149,6 +149,9 @@ input.ng-invalid.ng-touched {
 }
 #signin, .account, #signup {
   color: #F7F7EB;
+}
+.isFarmer {
+  padding-bottom: 10px;
 }
 .account {
   text-align: center;

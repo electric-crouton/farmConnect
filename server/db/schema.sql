@@ -6,6 +6,7 @@ CREATE DATABASE farmdata;
 
 CREATE TABLE farms (
   id SERIAL PRIMARY KEY,
+  -- user_id integer REFERENCES users (id)
   farm_name VARCHAR(50) UNIQUE,
   location VARCHAR(100),
   phone VARCHAR(10)
@@ -28,8 +29,8 @@ CREATE TABLE posts (
 
 CREATE TABLE users (
  id SERIAL PRIMARY KEY,
- email VARCHAR(30) UNIQUE,
- password VARCHAR(20),
+ email VARCHAR(50) UNIQUE,
+ password VARCHAR(255),
  farmer BOOLEAN NOT NULL DEFAULT FALSE
 );
 
