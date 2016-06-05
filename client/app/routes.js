@@ -5,7 +5,7 @@ angular.module('farmConnect.routes', [])
   $stateProvider
     .state('products', {
       url: '/products',
-      templateUrl: 'views/ProductsPage.html',
+      templateUrl: 'views/productsPage.html',
       controller: 'ProductsCtrl'
     })
     .state('addProduct', {
@@ -16,7 +16,7 @@ angular.module('farmConnect.routes', [])
     })
     .state('about', {
       url: '/about',
-      templateUrl: 'views/About.html',
+      templateUrl: 'views/about.html',
     })
     .state('signin', {
       url: '/signin',
