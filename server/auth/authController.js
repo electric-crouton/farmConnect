@@ -2,22 +2,23 @@ var connection = require('../db/connection.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 var Promise = require('bluebird');
-var passport = require('passport');
-var Strategy   = require('passport-local').Strategy;
 
 
 //function that checks for existing email address within database- returns either true or false
 //if false, there's nothing in the database corresponding to that email
-var checkForExistingEmailInDatabase = function (packet) {
-  return new Promise(function (resolve, reject) {
-    connection.query(`SELECT id FROM users WHERE users.email = '${packet.email}'`, function (error, result) {
-      console.log('querying database for existing email');
-      if (error) {
-        reject(error);
-      } else {
-        resolve(result.rows.length > 0);
-      }
-    });
+var checkForExistingEmailInDatabase = function (req, res, callback) {
+  const user = req.body;
+  connection.query("select * from users where email = '" + user.email + "'", function(err, result) {
+    console.log('result from querying users table in signup', result);
+    if (err) { 
+      console.log('error in querying users table');
+    }
+    // if the email already exists         
+    if (result.rows.length) {
+      console.log('That email is already taken');
+    } else {
+      callback(req, res);     
+    } 
   });
 };
 
@@ -25,45 +26,14 @@ var generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 };
 
-//function that inserts into the users table
-var insertIntoUsersTable = function (userInfo) {
-  var password = generateHash(userInfo.password);
-  return new Promise(function (resolve, reject) {
-    var insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${userInfo.email}', '${password}', '${userInfo.isFarmer}') RETURNING id`;
-    connection.query(insertQuery, function (error, result) {
-      if (error) {
-        reject(error);
-      } else {
-        console.log('result from insert into user table is:', result);
-        resolve(result);
-      }
-    });
-  });
-};
-
-//function that inserts into the farmer table
-// var insertIntoFarmsTable = function (userInfo) {
-//   return new Promise(function (resolve, reject) {
-//     connection.query(`INSERT INTO farms (farm_name, location, phone) VALUES ('${userInfo.farmName}', '${userInfo.farmLocation}', '${userInfo.farmPhone}')`, function (error, result) {
-//       console.log('record id is:', result);
-//       if (error) {
-//         reject(error);
-//       } else {
-//         resolve(result);
-//       }
-//     });
-//   });
-// };
-
 var insertIntoFarmsTable = function(req, res, token) {
-  console.log('inside insertIntoFarmsTable >>>>');
   connection.query(
     `INSERT INTO farms (farm_name, location, phone)\
     VALUES ('${req.body.farmName}', '${req.body.farmLocation}', '${req.body.farmPhone}')`, 
 
     (err, result) => {
       if (err) {
-        console.error('error:', err);
+        console.error('error in inserting into farms table:', err);
       } else {
         console.log('farm added!');
         res.status(201).json({
@@ -75,38 +45,33 @@ var insertIntoFarmsTable = function(req, res, token) {
   );
 };
 
-//function that inserts into a database
-  //if the farmer value is false, resolve the promise
-  //otherwise, call the function that inserts into the farmer table
-var insertIntoDatabase = function (packet) {
-  console.log('inserting into database');
-  return new Promise (function (resolve, reject) {
-    return insertIntoUsersTable(packet).then(function () {
-      if (packet.isFarmer) {
-        return insertIntoFarmsTable(packet);
-      }
-      return resolve();
-    });
+var insertIntoUsersTable = function (req, res) {
+  const user = req.body;
+  const hash = generateHash(user.password);
+  req.body.password = hash;
+
+  const insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${user.email}', '${hash}', '${user.isFarmer}') RETURNING id`;
+  connection.query(insertQuery, function(err, result) {
+    if (err) { console.log('error in inserting user into users table'); }
+    user.id = result.rows[0].id;
+    const token = jwt.sign({
+        id: user.id
+      }, 'server secret', {
+        expiresIn: '2h'
+      });
+    
+    if (user.isFarmer == 'true') {
+      insertIntoFarmsTable(req, res, token);
+    } else {
+      res.status(201).json({
+        user: user,
+        token: token
+      });
+    }
   });
 };
 
-// exports.signup = function (req, res) {
-//   console.log('inside signup of authcontroller in server');
-//   var packet = req.body;
-//   checkForExistingEmailInDatabase(packet).then(function (checkResult) {
-//     if (checkResult) {
-//       return Promise.resolve('Finished');
-//     }
-//     return insertIntoDatabase(packet);
-//   }).then(function () {
-//     var token = jwt.encode(user.email, 'secret');
-//     res.json({token: token});
-//   });
-// };
 
-
-
-//  >>>>>>>>>>> THIS PORTION OF THE CODE WILL HANDLE ALL SIGN INS.
 
 
 
@@ -161,23 +126,6 @@ var isValidPassword = function (password, dbPassword) {
 // };
 
 
-//check that they're signed in before allowing access to certain routes
-exports.isSignedin = function (req, res) {
-  var token = req.headers['x-access-token'];
-  if (!token) {
-    return false;
-  } else {
-    var user = jwt.decode(token, 'secret');
-    connection.query(`SELECT EXISTS (SELECT * FROM users WHERE users.email = '${user.email}')`, function (err, result) {
-      if (err) {
-        throw err;
-      }
-      res.redirect('/');
-    });
-  }
-
-};
-
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
@@ -191,61 +139,7 @@ const generateToken = function(user, next) {
 };
 
 exports.signup = function(req, res) {
-  console.log('req.body: ', req.body);
-  const email = req.body.email;
-  const password = generateHash(req.body.password);
-  const isFarmer = req.body.isFarmer;
-  // passport.use('local-signup', new Strategy({
-  //   // by default, local strategy uses username and password, we will override with email
-  //   usernameField : 'email',
-  //   passwordField : 'password',
-  //   passReqToCallback : true, // allows us to pass back the entire request to the callback
-  //   session: false
-  // }, function(req, email, password, done) {
-
-    // find a user whose email is the same as the forms email
-    // we are checking to see if the user trying to login already exists
-      connection.query("select * from users where email = '" + email + "'", function(err, rows){
-        console.log(rows);
-        if (err) { 
-          // return done(err); 
-          console.log('error in querying users table');
-        }
-                  
-        if (rows.length) {
-          console.log('That email is already taken');
-          // return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
-        } else {
-        // if there is no user with that email, create the user
-        var newUser = {};
-        newUser.email    = email;
-        newUser.isFarmer = isFarmer;
-        req.body.password = password;
-
-        var insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${email}', '${password}', '${isFarmer}') RETURNING id`;
-        connection.query(insertQuery, function(err, result) {
-          console.log('result: ', result);
-          newUser.id = result.rows[0].id;
-          var token = jwt.sign({
-              id: newUser.id
-            }, 'server secret', {
-              expiresIn: '2h'
-            });
-          
-          newUser.token = token;
-          if (isFarmer == 'true') {
-            insertIntoFarmsTable(req, res, token);
-          } else {
-            res.status(201).json({
-              user: req.body,
-              token: token
-            });
-          }
-          // return done(null, newUser);
-        }); 
-        } 
-      });
-    // }));
+  checkForExistingEmailInDatabase(req, res, insertIntoUsersTable);
 };
 
 exports.signin = function(req, res) {
