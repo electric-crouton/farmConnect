@@ -39,7 +39,10 @@ angular.module ('farmConnect.services', [])
   Auth.signup = (user) => {
     return $http.post('/api/users/signup', user)
     .then(function(resp) {
-      return resp.data.token;
+      // return resp.data.token;
+      console.log('successful signup in services!');
+      console.log('resp from user signup: ', resp);
+      $location.path('/products');
     });
   };
 

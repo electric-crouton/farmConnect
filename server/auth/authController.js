@@ -1,7 +1,10 @@
 var connection = require('../db/connection.js');
 var bcrypt = require('bcrypt-nodejs');
-var jwt = require('json-web-token');
+var jwt = require('jsonwebtoken');
 var Promise = require('bluebird');
+var passport = require('passport');
+var Strategy   = require('passport-local').Strategy;
+
 
 //function that checks for existing email address within database- returns either true or false
 //if false, there's nothing in the database corresponding to that email
@@ -22,7 +25,7 @@ var generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 };
 
-//function that inserts into the user table
+//function that inserts into the users table
 var insertIntoUsersTable = function (userInfo) {
   var password = generateHash(userInfo.password);
   return new Promise(function (resolve, reject) {
@@ -67,21 +70,19 @@ var insertIntoDatabase = function (packet) {
   });
 };
 
-exports.signUp = function (req, res) {
-  console.log('inside signup of authcontroller in server');
-  var packet = req.body;
-  checkForExistingEmailInDatabase(packet).then(function (checkResult) {
-    if (checkResult) {
-      res.redirect('/users/signin'); //should have ?exists=1 inside signin to render error message
-      return Promise.resolve('Finished');
-    }
-    return insertIntoDatabase(packet);
-  }).then(function () {
-    var token = jwt.encode(user.email, 'secret');
-    res.json({token: token});
-  });
-  //front end needs to handle redirection- can't have both data and redirect headers on res
-};
+// exports.signup = function (req, res) {
+//   console.log('inside signup of authcontroller in server');
+//   var packet = req.body;
+//   checkForExistingEmailInDatabase(packet).then(function (checkResult) {
+//     if (checkResult) {
+//       return Promise.resolve('Finished');
+//     }
+//     return insertIntoDatabase(packet);
+//   }).then(function () {
+//     var token = jwt.encode(user.email, 'secret');
+//     res.json({token: token});
+//   });
+// };
 
 
 
@@ -120,8 +121,7 @@ var isValidPassword = function (password, dbPassword) {
 };
 
 
-//handle the sign in
-exports.signIn = function (req, res) {
+exports.signin = function (req, res) {
   queryDatabaseForPassword(req.body).then(function (pwObj) {
     if (typeof pwObj === 'string') {
       return Promise.reject (pwObj);
@@ -142,7 +142,7 @@ exports.signIn = function (req, res) {
 
 
 //check that they're signed in before allowing access to certain routes
-exports.isSignedIn = function (req, res) {
+exports.isSignedin = function (req, res) {
   var token = req.headers['x-access-token'];
   if (!token) {
     return false;
@@ -157,6 +157,89 @@ exports.isSignedIn = function (req, res) {
   }
 
 };
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+
+const serialize = function(req, res, next) {  
+  var user = req.body;
+  insertIntoUsersTable(user);
+  
+  // db.updateOrCreate(req.user, function(err, user){
+  //   if(err) {return next(err);}
+  //   // we store the updated information in req.user again
+  //   req.user = {
+  //     id: user.id
+  //   };
+  //   next();
+  // });
+};
+
+const generateToken = function(req, res, next) {  
+  req.token = jwt.sign({
+    id: req.user.id
+  }, 'server secret', {
+    expiresInMinutes: 120
+  });
+  next();
+};
+
+exports.signup = function(req, res) {
+  console.log('inside signup of authcontroller');
+  console.log('req.body: ', req.body);
+  const email = req.body.email;
+  const password = generateHash(req.body.password);
+  const isFarmer = req.body.isFarmer;
+  // passport.use('local-signup', new Strategy({
+  //   // by default, local strategy uses username and password, we will override with email
+  //   usernameField : 'email',
+  //   passwordField : 'password',
+  //   passReqToCallback : true, // allows us to pass back the entire request to the callback
+  //   session: false
+  // }, function(req, email, password, done) {
+    console.log('inside insert query of users');
+
+    // find a user whose email is the same as the forms email
+    // we are checking to see if the user trying to login already exists
+      connection.query("select * from users where email = '" + email + "'", function(err, rows){
+        console.log(rows);
+        if (err) { 
+          // return done(err); 
+          console.log('error in querying users table');
+        }
+                  
+        if (rows.length) {
+          console.log('That email is already taken');
+          // return done(null, false, req.flash('signupMessage', 'That email is already taken.'));
+        } else {
+        // if there is no user with that email, create the user
+        var newUser = {};
+        newUser.email    = email;
+        newUser.isFarmer = isFarmer;
+
+        var insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${email}', '${password}', '${isFarmer}') RETURNING id`;
+        connection.query(insertQuery, function(err, result) {
+          console.log('result: ', result);
+          newUser.id = result.rows[0].id;
+          var token = jwt.sign({
+              id: newUser.id
+            }, 'server secret', {
+              expiresIn: '2h'
+            });
+          
+          newUser.token = token;
+          res.status(201).json({
+            user: req.body,
+            token: token
+          });
+          // return done(null, newUser);
+        }); 
+        } 
+      });
+    // }));
+};
+
 
 
 
