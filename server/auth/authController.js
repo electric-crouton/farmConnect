@@ -1,7 +1,6 @@
 var connection = require('../db/connection.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
-var Promise = require('bluebird');
 
 
 //function that checks for existing email address within database- returns either true or false
@@ -72,72 +71,6 @@ var insertIntoUsersTable = function (req, res) {
 };
 
 
-
-
-
-//query the database for the password and compare it to what's been provided by the user
-var queryDatabaseForPassword = function (userInfo) {
-  return new Promise(function (resolve, reject) {
-    connection.query(`SELECT password FROM users WHERE users.email = '${userInfo.email}' `, function (error, result) {
-      if (error) {
-        reject(error);
-      } else {
-        var dbPassword = result.rows[0].password || null;
-        if (dbPassword) {
-          console.log('userinfo password is:', userInfo.password, 'the db password is:', dbPassword);
-          resolve({u: userInfo.password, p: dbPassword});
-        } else {
-          resolve('No such password exists');
-        }
-      }
-    });
-  });
-};
-
-var isValidPassword = function (password, dbPassword) {
-  return new Promise(function (resolve, reject) {
-    return bcrypt.compare(password, dbPassword, function (err, res) {
-      if (err) {
-        throw err;
-      }
-      resolve(res);
-    });
-  });
-};
-
-
-// exports.signin = function (req, res) {
-//   queryDatabaseForPassword(req.body).then(function (pwObj) {
-//     if (typeof pwObj === 'string') {
-//       return Promise.reject (pwObj);
-//     } else {
-//       var password = pwObj.u, dbPassword = pwObj.p;
-//       return isValidPassword(password, dbPassword);
-//     }
-//   }).then(function (isValid) {
-//     console.log('isvalid is:', isValid);
-//     if (isValid) {
-//       var token = jwt.encode(req.body.email, 'secret');
-//       res.json({token: token});
-//     } else {
-//       console.error('This username and password combination could not be found. Please try again.');
-//     }
-//   });
-// };
-
-
-//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-const generateToken = function(user, next) {  
-  req.token = jwt.sign({
-    id: user.id
-  }, 'server secret', {
-    expiresInMinutes: 120
-  });
-  next();
-};
-
 exports.signup = function(req, res) {
   checkForExistingEmailInDatabase(req, res, insertIntoUsersTable);
 };
@@ -164,10 +97,6 @@ exports.signin = function(req, res) {
     } 
   });
 };
-
-
-
-
 
 
 
