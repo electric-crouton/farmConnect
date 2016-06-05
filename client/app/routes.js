@@ -17,7 +17,6 @@ angular.module('farmConnect.routes', [])
     .state('about', {
       url: '/about',
       templateUrl: 'views/About.html',
-      authenticate: true
     })
     .state('signin', {
       url: '/signin',

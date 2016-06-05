@@ -3,6 +3,10 @@
 # System Files
 .DS_Store
 
+# RSA Keys
+authorized_keys
+authorized_keys.pub
+
 # Logs
 logs
 *.log
