@@ -32,17 +32,14 @@ angular.module ('farmConnect.services', [])
   Auth.signin = (user) => {
     return $http.post('/api/users/signin', user)
     .then(function(resp) {
-      return resp.data.token;
+      return resp.data;
     });
   };
 
   Auth.signup = (user) => {
     return $http.post('/api/users/signup', user)
     .then(function(resp) {
-      // return resp.data.token;
-      console.log('successful signup in services!');
-      console.log('resp from user signup: ', resp);
-      $location.path('/products');
+      return resp.data;
     });
   };
 
@@ -51,7 +48,7 @@ angular.module ('farmConnect.services', [])
   };
 
   Auth.signout = () => {
-    $window.localStorage.removeItem('com.farmConnect');
+    $window.localStorage.removeItem('currentUser');
     $location.path('/signin');
   };
 

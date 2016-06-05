@@ -42,17 +42,37 @@ var insertIntoUsersTable = function (userInfo) {
 };
 
 //function that inserts into the farmer table
-var insertIntoFarmsTable = function (userInfo) {
-  return new Promise(function (resolve, reject) {
-    connection.query(`INSERT INTO farms (farm_name, location, phone) VALUES ('${userInfo.farmName}', '${userInfo.farmLocation}', '${userInfo.farmPhone}')`, function (error, result) {
-      console.log('record id is:', result);
-      if (error) {
-        reject(error);
+// var insertIntoFarmsTable = function (userInfo) {
+//   return new Promise(function (resolve, reject) {
+//     connection.query(`INSERT INTO farms (farm_name, location, phone) VALUES ('${userInfo.farmName}', '${userInfo.farmLocation}', '${userInfo.farmPhone}')`, function (error, result) {
+//       console.log('record id is:', result);
+//       if (error) {
+//         reject(error);
+//       } else {
+//         resolve(result);
+//       }
+//     });
+//   });
+// };
+
+var insertIntoFarmsTable = function(req, res, token) {
+  console.log('inside insertIntoFarmsTable >>>>');
+  connection.query(
+    `INSERT INTO farms (farm_name, location, phone)\
+    VALUES ('${req.body.farmName}', '${req.body.farmLocation}', '${req.body.farmPhone}')`, 
+
+    (err, result) => {
+      if (err) {
+        console.error('error:', err);
       } else {
-        resolve(result);
+        console.log('farm added!');
+        res.status(201).json({
+          user: req.body,
+          token: token
+        });
       }
-    });
-  });
+    }
+  );
 };
 
 //function that inserts into a database
@@ -121,24 +141,24 @@ var isValidPassword = function (password, dbPassword) {
 };
 
 
-exports.signin = function (req, res) {
-  queryDatabaseForPassword(req.body).then(function (pwObj) {
-    if (typeof pwObj === 'string') {
-      return Promise.reject (pwObj);
-    } else {
-      var password = pwObj.u, dbPassword = pwObj.p;
-      return isValidPassword(password, dbPassword);
-    }
-  }).then(function (isValid) {
-    console.log('isvalid is:', isValid);
-    if (isValid) {
-      var token = jwt.encode(req.body.email, 'secret');
-      res.json({token: token});
-    } else {
-      console.error('This username and password combination could not be found. Please try again.');
-    }
-  });
-};
+// exports.signin = function (req, res) {
+//   queryDatabaseForPassword(req.body).then(function (pwObj) {
+//     if (typeof pwObj === 'string') {
+//       return Promise.reject (pwObj);
+//     } else {
+//       var password = pwObj.u, dbPassword = pwObj.p;
+//       return isValidPassword(password, dbPassword);
+//     }
+//   }).then(function (isValid) {
+//     console.log('isvalid is:', isValid);
+//     if (isValid) {
+//       var token = jwt.encode(req.body.email, 'secret');
+//       res.json({token: token});
+//     } else {
+//       console.error('This username and password combination could not be found. Please try again.');
+//     }
+//   });
+// };
 
 
 //check that they're signed in before allowing access to certain routes
@@ -161,24 +181,9 @@ exports.isSignedin = function (req, res) {
 //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-
-const serialize = function(req, res, next) {  
-  var user = req.body;
-  insertIntoUsersTable(user);
-  
-  // db.updateOrCreate(req.user, function(err, user){
-  //   if(err) {return next(err);}
-  //   // we store the updated information in req.user again
-  //   req.user = {
-  //     id: user.id
-  //   };
-  //   next();
-  // });
-};
-
-const generateToken = function(req, res, next) {  
+const generateToken = function(user, next) {  
   req.token = jwt.sign({
-    id: req.user.id
+    id: user.id
   }, 'server secret', {
     expiresInMinutes: 120
   });
@@ -186,7 +191,6 @@ const generateToken = function(req, res, next) {
 };
 
 exports.signup = function(req, res) {
-  console.log('inside signup of authcontroller');
   console.log('req.body: ', req.body);
   const email = req.body.email;
   const password = generateHash(req.body.password);
@@ -198,7 +202,6 @@ exports.signup = function(req, res) {
   //   passReqToCallback : true, // allows us to pass back the entire request to the callback
   //   session: false
   // }, function(req, email, password, done) {
-    console.log('inside insert query of users');
 
     // find a user whose email is the same as the forms email
     // we are checking to see if the user trying to login already exists
@@ -217,6 +220,7 @@ exports.signup = function(req, res) {
         var newUser = {};
         newUser.email    = email;
         newUser.isFarmer = isFarmer;
+        req.body.password = password;
 
         var insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${email}', '${password}', '${isFarmer}') RETURNING id`;
         connection.query(insertQuery, function(err, result) {
@@ -229,15 +233,42 @@ exports.signup = function(req, res) {
             });
           
           newUser.token = token;
-          res.status(201).json({
-            user: req.body,
-            token: token
-          });
+          if (isFarmer == 'true') {
+            insertIntoFarmsTable(req, res, token);
+          } else {
+            res.status(201).json({
+              user: req.body,
+              token: token
+            });
+          }
           // return done(null, newUser);
         }); 
         } 
       });
     // }));
+};
+
+exports.signin = function(req, res) {
+  const email = req.body.email;
+  // the password entered by the user
+  const userPW = req.body.password;
+
+  connection.query("select * from users where email = '" + email + "'", function(err, result) {
+    console.log('result in signin of authcontroller', result);
+    if (err) { 
+      // return done(err); 
+      console.log('error in querying users table');
+    } else {
+    // if email exists in db, compare user's entered PW to the one stored in the db
+    const dbPassword = result.rows[0].password;
+    bcrypt.compare(userPW, dbPassword, function(err, match) {
+        if (err) { console.log('wrong password!'); }
+        res.status(200).json({
+          user: result.rows[0]
+        });
+    });
+    } 
+  });
 };
 
 
