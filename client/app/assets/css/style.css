@@ -24,7 +24,7 @@ h1 {
 
 input[type="submit"]{
   background-color: #53ad0e;
-  width: 300px;
+  width: 320px;
   font-size: 16px;
   color: #F7F7EB;
 }
@@ -45,7 +45,7 @@ form input, .farmLocation {
 
 form {
   margin: 0 auto;  
-  width: 300px;
+  width: 320px;
 }
 .error {
   height:30px; 
@@ -167,9 +167,9 @@ input.ng-valid.ng-touched{
   text-decoration: none;
   color: #F7F7EB;
 }
-.submit {
+/*.submit {
   margin-left: 40px;
-}
+}*/
 md-radio-button ._md-off {
   background-color: #F7F7EB;
 }
