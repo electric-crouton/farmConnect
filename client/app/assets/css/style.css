@@ -145,7 +145,7 @@ input.ng-invalid.ng-touched {
 .item-details {
   font-size: 13px;
 }
-.item-price {
+.item-price, .alert-info a {
   color: #53ad0e;
   font-weight: bold;
 }
