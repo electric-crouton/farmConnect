@@ -27,16 +27,7 @@ exports.getPosts = (req, res) => {
 
 //add the product to the products table if it wasn't already there
 var addProductIfNecessary = (req, res, callback) => {
-  const body = req.body;
-  console.log('post body:', body);
-  const post = {
-    farmName: utils.escape(body.farmName),
-    farmLocation: utils.escape(body.farmLocation),
-    farmPhone: utils.escape(body.farmPhone),
-    productName: utils.escape(body.productName),
-    pricePerPound: body.pricePerPound,
-    poundsAvailable: body.poundsAvailable
-  };
+  const post = req.body;
   console.log('post', post, post.farmName);
 
   connection.query({

@@ -31,6 +31,28 @@ var checkForExistingEmailInDatabase = function (req, res, callback) {
   );
 };
 
+var insertIntoFarmsTable = function(req, res, token) {
+  const farm = req.body;
+  console.log('farm:', farm);
+  connection.query({
+      text: 'INSERT INTO farms (user_id, farm_name, location, phone) VALUES ((SELECT id FROM users WHERE email = $1), $2, $3, $4)', 
+      values: [farm.email, farm.farmName, farm.farmLocation, farm.farmPhone]
+    },
+
+    (err, result) => {
+      if (err) {
+        console.error('error in inserting into farms table:', err);
+      } else {
+        console.log('farm added!');
+        res.status(201).json({
+          user: req.body,
+          token: token
+        });
+      }
+    }
+  );
+};
+
 var insertIntoUsersTable = function (req, res) {
   const user = req.body;
   console.log ('user:', user);
@@ -52,28 +74,6 @@ var insertIntoUsersTable = function (req, res) {
       } else {
         res.status(201).json({
           user: user,
-          token: token
-        });
-      }
-    }
-  );
-};
-
-var insertIntoFarmsTable = function(req, res, token) {
-  const farm = req.body;
-  console.log('farm:', farm);
-  connection.query({
-      text: 'INSERT INTO farms (user_id, farm_name, location, phone) VALUES ((SELECT id FROM users WHERE email = $1), $2, $3, $4)', 
-      values: [farm.email, farm.farmName, farm.farmLocation, farm.farmPhone]
-    },
-
-    (err, result) => {
-      if (err) {
-        console.error('error in inserting into farms table:', err);
-      } else {
-        console.log('farm added!');
-        res.status(201).json({
-          user: req.body,
           token: token
         });
       }
