@@ -1,3 +1,4 @@
+
 var connection = require('../db/connection.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
@@ -61,15 +62,15 @@ var insertIntoUsersTable = function (req, res) {
   req.body.password = hash;
 
   connection.query({
-      text: 'INSERT INTO users (email, password, farmer) VALUES ($1, $2, $3) RETURNING id',
-      values: [user.email, hash, user.isFarmer] //change to farmer
+      text: '(INSERT INTO users (email, password, farmer) VALUES $1, $2, $3) RETURNING id',
+      values: [user.email, hash, user.farmer]
     }, 
 
     (err, result) => {
       if (err) { console.log('error in inserting user into users table'); }
       user.id = result.rows[0].id;
       const token = jwt.sign({id: user.id}, 'JtEnMq9j0pNlQ0lXZhJEnm', {expiresIn: '2h'});  
-      if (user.isFarmer === 'true') {   //change to farmer
+      if (user.farmer === 'true') {
         console.log('inserting farmer');
         insertIntoFarmsTable(req, res, token);
       } else {
@@ -129,6 +130,7 @@ exports.signin = function(req, res) {
           else if (user.farmer === true) {
             getFarmerInfo(user, res);
           } else {
+            // If the user is not a seller, simply send their user info back to the client
             res.status(200).json({user: result.rows[0]});
           }
         });
