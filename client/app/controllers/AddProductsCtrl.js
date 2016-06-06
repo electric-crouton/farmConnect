@@ -35,11 +35,12 @@ angular.module('farmConnect.addProducts', [])
   // checks if the current user is a farmer in order to allow user to post a new product to sell
   $scope.isFarmer = () => {
     const currentUser = $window.localStorage.getItem('currentUser');
+    // currentUser is a stringified object so we have to parse it
     const parsedUser = JSON.parse(currentUser);
-    console.log('currentUser: ', currentUser);
     console.log('parsedUser: ', parsedUser);
 
-    if (currentUser !== null && parsedUser.isFarmer === 'true' || parsedUser.farmer === true || parsedUser.farm_name) {
+    // checks to see if user is logged in and if user is a farmer
+    if (currentUser !== null && parsedUser.farmer === 'true' || parsedUser.farm_name) {
       return true;
     } else { 
       return false;

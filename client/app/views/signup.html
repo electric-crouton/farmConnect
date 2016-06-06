@@ -17,14 +17,14 @@
       <div>Would you like to sell products on this site?</div>
       <div class="isFarmer">
         <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true" ng-model="user.isFarmer"> Yes
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio1" value="true" ng-model="user.farmer"> Yes
         </label>
         <label class="radio-inline">
-          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false" ng-model="user.isFarmer"> No
+          <input type="radio" name="inlineRadioOptions" id="inlineRadio2" value="false" ng-model="user.farmer"> No
         </label>
       </div>
     </div>
-    <div class="farmInfo" ng-show="user.isFarmer == 'true'">
+    <div class="farmInfo" ng-show="user.farmer == 'true'">
       <div><label>Farm Name</label></div>
       <input type="text" name="farmName" class="form-control" ng-model="user.farmName" required>
       <p ng-show="signupForm.farmName.$invalid && !signupForm.farmName.$pristine" class="error">Farm name is required</p>
