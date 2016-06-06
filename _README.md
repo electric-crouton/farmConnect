@@ -11,13 +11,12 @@
 ## Table of Contents
 
 1. [Installation](#Installation)
-    1. [PostgreSQL](#PostgreSQL)
+    a. [PostgreSQL](#PostgreSQL)
 2. [Requirements](#Requirements)
 3. [File Structure: Directory Layout](#File-Structure-Directory-Layout)
-4. [Development](#development)
-    a. [Installing Dependencies](#installing-dependencies)
-    b. [Tasks](#tasks)
-5. [Team](#team)
+4. [Setup](#Setup)
+    a. [Installing Dependencies](#Installing-Dependencies)
+5. [Usage](#Usage)
 6. [Contributing](#contributing)
 
 ##Installation
@@ -70,29 +69,52 @@ client/                                     #client entry point, imports all cli
     bower.json                              #manages angular and bootstrap dependencies 
     package.json                            #manages testing and protractor dependencies
 server/                                     #entry point for all server code
-  auth/
+  auth/                                     #entry point for authentication control
+    authController.js                       #controls authentication
   config/
-  db/
+    middlewares/                            #initializes server connection with client
+        initialization.js
+        logging.js
+    assets.json                             #manages dependencies
+    routes.js                               #directs various routes within the back end
+    utils.js                                #utility function that escapes unwanted characters
+  db/                                       #entry point for database and connection
+    connection.js                           #establishes connection between server and database
+    data.js                                 #dummy data for users
+    postsData.js                            #dummy data for posts
+    schema.sql                              #defines all tables and relations within the database
+    seedDB.js                               #seeds the database with dummy data
   products/
-  package.json
-  server.js
+    productsCollection.js                   #controls addition of products to the database
+  package.json                              #manages server side dependencies
+  server.js                                 #entry point file for running the server
 ```
 
-## Development
+## Setup
 
 ### Installing Dependencies
 
-From within the root directory:
+Clone this repo to your local work station and from within the root directory:
 
 ```sh
-sudo npm install -g bower
-npm install
-bower install
+./install
 ```
 
-### Roadmap
+## Usage
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+Once the dependencies are installed and configuration keys are setup, you can start the application with the following commands. First, within the postgres app:
+
+```sh
+psql < <FILE_PATH_TO_YOUR_SCHEMA.SQL_FILE>
+```
+
+And then from inside the command line in the root directory:
+
+```sh
+node server/server.js
+```
+
+Open your web browser and go to `http://localhost:1337` to see the app running.
 
 
 ## Contributing
