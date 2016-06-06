@@ -18,7 +18,7 @@
     </div>
     <div class="product" ng-repeat="item in items | filter:search">
       <span>
-        <img ng-src='http://eathealthylivefit.com/wp-content/uploads/2013/02/apple-red-e1361844844713.jpg'/>
+        <img ng-src="{{ item.img }}"/>
         <div class="productName">{{ item.productName }}</div>
         <div class="item-details">
           <div class="farm-name">{{ item.farmName }}</div >
