@@ -1,3 +1,4 @@
+
 var connection = require('../db/connection.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
@@ -50,7 +51,7 @@ var insertIntoUsersTable = function (req, res) {
   const hash = generateHash(user.password);
   req.body.password = hash;
 
-  const insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${user.email}', '${hash}', '${user.isFarmer}') RETURNING id`;
+  const insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${user.email}', '${hash}', '${user.farmer}') RETURNING id`;
   connection.query(insertQuery, function(err, result) {
     if (err) { console.log('error in inserting user into users table'); }
     user.id = result.rows[0].id;
@@ -60,7 +61,7 @@ var insertIntoUsersTable = function (req, res) {
         expiresIn: '2h'
       });
     
-    if (user.isFarmer == 'true') {
+    if (user.farmer == 'true') {
       insertIntoFarmsTable(req, res, token);
     } else {
       res.status(201).json({
