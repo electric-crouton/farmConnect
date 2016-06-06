@@ -95,7 +95,7 @@ var addPost = (req, res, post) => {
         }
       } else {
         if (res) {
-          res.sendStatus(200); 
+          res.sendStatus(201); 
         }
       }
     }

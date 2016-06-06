@@ -3,6 +3,9 @@ var connection = require('../db/connection.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 
+var generateHash = function(password) {
+  return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+};
 
 //function that checks for existing email address within database- returns either true or false
 //if false, there's nothing in the database corresponding to that email
@@ -28,10 +31,33 @@ var checkForExistingEmailInDatabase = function (req, res, callback) {
   );
 };
 
-var generateHash = function(password) {
-  return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-};
+var insertIntoUsersTable = function (req, res) {
+  const user = req.body;
+  console.log ('user:', user);
+  const hash = generateHash(user.password);
+  req.body.password = hash;
 
+  connection.query({
+      text: 'INSERT INTO users (email, password, farmer) VALUES ($1, $2, $3) RETURNING id',
+      values: [user.email, hash, user.farmer]
+    }, 
+
+    (err, result) => {
+      if (err) { console.log('error in inserting user into users table'); }
+      user.id = result.rows[0].id;
+      const token = jwt.sign({id: user.id}, 'JtEnMq9j0pNlQ0lXZhJEnm', {expiresIn: '2h'});  
+      if (user.farmer === 'true') {
+        console.log('inserting farmer');
+        insertIntoFarmsTable(req, res, token);
+      } else {
+        res.status(201).json({
+          user: user,
+          token: token
+        });
+      }
+    }
+  );
+};
 
 var insertIntoFarmsTable = function(req, res, token) {
   const farm = req.body;
@@ -48,34 +74,6 @@ var insertIntoFarmsTable = function(req, res, token) {
         console.log('farm added!');
         res.status(201).json({
           user: req.body,
-          token: token
-        });
-      }
-    }
-  );
-};
-
-var insertIntoUsersTable = function (req, res) {
-  const user = req.body;
-  console.log ('user:', user);
-  const hash = generateHash(user.password);
-  req.body.password = hash;
-
-  connection.query({
-      text: '(INSERT INTO users (email, password, farmer) VALUES $1, $2, $3) RETURNING id',
-      values: [user.email, hash, user.farmer]
-    }, 
-
-    (err, result) => {
-      if (err) { console.log('error in inserting user into users table'); }
-      user.id = result.rows[0].id;
-      const token = jwt.sign({id: user.id}, 'JtEnMq9j0pNlQ0lXZhJEnm', {expiresIn: '2h'});  
-      if (user.farmer === 'true') {
-        console.log('inserting farmer');
-        insertIntoFarmsTable(req, res, token);
-      } else {
-        res.status(201).json({
-          user: user,
           token: token
         });
       }
@@ -101,7 +99,6 @@ var getFarmerInfo = function(user, res) {
     }
   );
 };
-
 
 exports.signup = function(req, res) {
   checkForExistingEmailInDatabase(req, res, insertIntoUsersTable);
