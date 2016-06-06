@@ -33,15 +33,19 @@
       </div> -->
       <div class="form-group">
         <label>Product name</label>
-        <input type="text" name="productName" class="form-control" ng-model="product.productName" required>
+        <input type="text" name="productName" class="form-control" ng-model="product.productName" placeholder="Ex: Apples" required>
       </div>
       <div class="form-group">
         <label>Price of Product (per pound)</label>
-        <input type="number" class="form-control" ng-model="product.pricePerPound" min="0" required> 
+        <input type="number" class="form-control" ng-model="product.pricePerPound" min="0" placeholder="Ex: 3.99" required> 
       </div>
       <div class="form-group">
         <label>Stock (in pounds)</label>
-        <input type="number" class="form-control" ng-model="product.poundsAvailable" min="0" required> 
+        <input type="number" class="form-control" ng-model="product.poundsAvailable" min="0" placeholder="Ex: 25" required> 
+      </div>
+      <div class="form-group">
+        <label>Product image url</label>
+        <input type="text" class="form-control" ng-model="product.img" placeholder="Ex: https://apples.com/apple.jpg">
       </div>
       <div><input type="submit" value="Submit"></div>
     </form>
