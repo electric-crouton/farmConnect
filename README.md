@@ -105,7 +105,7 @@ Clone this repo to your local work station and from within the root directory:
 Once the dependencies are installed and configuration keys are setup, you can start the application with the following commands. First, within the postgres app:
 
 ```sh
-psql < <FILE_PATH_TO_YOUR_SCHEMA.SQL_FILE>
+psql < ABSOLUTE_PATH_TO_YOUR_SCHEMA.SQL_FILE;
 ```
 
 And then from inside the command line in the root directory:
