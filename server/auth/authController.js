@@ -28,8 +28,8 @@ var generateHash = function(password) {
 
 var insertIntoFarmsTable = function(req, res, token) {
   connection.query(
-    `INSERT INTO farms (farm_name, location, phone)\
-    VALUES ('${req.body.farmName}', '${req.body.farmLocation}', '${req.body.farmPhone}')`, 
+    `INSERT INTO farms (user_id, farm_name, location, phone)\
+    VALUES ((SELECT id FROM users WHERE email = '${req.body.email}'),'${req.body.farmName}', '${req.body.farmLocation}', '${req.body.farmPhone}')`, 
 
     (err, result) => {
       if (err) {
