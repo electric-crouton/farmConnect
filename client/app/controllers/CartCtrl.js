@@ -1,8 +1,9 @@
 angular.module('farmConnect.cart', [])
 
-.controller('CartCtrl', function($scope, $rootScope, Cart) {
+.controller('CartCtrl', function($scope, $rootScope, Cart, $uibModal) {
   $rootScope.cart = $rootScope.cart || [];
   $scope.shippingCost = 5.99;
+  $scope.checkoutModal;
 
   $scope.getTotalItems = () => {
     return $rootScope.cart.length;
@@ -22,6 +23,14 @@ angular.module('farmConnect.cart', [])
     $scope.calculateTotal();
     $rootScope.cartSummary.numOfItems--;
     $rootScope.cartSummary.itemsText = $rootScope.cartSummary.numOfItems === 1 ? 'item' : 'items';
+  };
+
+  $scope.openCheckoutModal = () => {
+    var checkoutModal = $uibModal.open({
+      templateUrl: '../views/checkoutModal.html',
+      controller: 'CheckoutCtrl',
+      size: 'lg'
+    });
   };
 
 });
