@@ -108,6 +108,7 @@ exports.signin = function(req, res) {
         else if (user.farmer == true) {
           getFarmerInfo(user, res);
         } else {
+          // If the user is not a seller, simply send their user info back to the client
           res.status(200).json({
             user: result.rows[0]
           });
