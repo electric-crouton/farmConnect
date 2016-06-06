@@ -132,11 +132,11 @@ input.ng-valid.ng-touched{
   color: #000;
 }
 
-.farm-name {
+.productName {
   font-weight: 700;
   font-size: 16px;
 }
-.category, .location {
+.farm-name, .location {
   color: #818485;
 }
 .item-details {
