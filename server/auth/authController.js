@@ -22,6 +22,7 @@ var checkForExistingEmailInDatabase = function (req, res, callback) {
   });
 };
 
+//Hashes the password
 var generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 };
