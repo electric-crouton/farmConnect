@@ -24,7 +24,8 @@ exports.getPosts = (req, res) => {
   });
 };
 
-//add the farm to the farms table if it wasn't already there 
+//add the farm to the farms table if it wasn't already there
+//will be obsoleted once auth stuff is merged in 
 var addFarmIfNecessary = (req, res, callback1, callback2) => {
   const body = req.body;
   console.log('post body:', body);
@@ -39,8 +40,8 @@ var addFarmIfNecessary = (req, res, callback1, callback2) => {
   console.log('post', post, post.farmName);
 
   connection.query({
-    text: 'SELECT EXISTS (SELECT * FROM farms WHERE farm_name = $1)',
-    values: [post.farmName]
+      text: 'SELECT EXISTS (SELECT * FROM farms WHERE farm_name = $1)',
+      values: [post.farmName]
     }, 
 
     (err, result) => {
@@ -72,8 +73,8 @@ var addFarmIfNecessary = (req, res, callback1, callback2) => {
 //add the product to the products table if it wasn't already there
 var addProductIfNecessary = (req, res, post, callback) => {
   connection.query({
-    text: 'SELECT EXISTS (SELECT * FROM products WHERE product_name = $1)',
-    values: [post.productName] 
+      text: 'SELECT EXISTS (SELECT * FROM products WHERE product_name = $1)',
+      values: [post.productName] 
     }, 
 
     (err, result) => {
@@ -81,8 +82,8 @@ var addProductIfNecessary = (req, res, post, callback) => {
     if (!result.rows[0].exists) {
 
       connection.query({
-        text: 'INSERT INTO products (product_name) VALUES ($1)',
-        values: [post.productName]
+          text: 'INSERT INTO products (product_name) VALUES ($1)',
+          values: [post.productName]
         },    
 
         (err, result) => {
