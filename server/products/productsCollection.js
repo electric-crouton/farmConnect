@@ -1,5 +1,4 @@
 const connection = require('../db/connection.js');
-const utils = require('../config/utils.js');
 
 //return an array of all posts in the database
 exports.getPosts = (req, res) => { 
