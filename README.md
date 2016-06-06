@@ -4,17 +4,17 @@
 
 ## Team
 
-  - __Product Owner__: Tegan Duong
-  - __Scrum Master__: Nathanael Ligon
-  - __Development Team Members__: Ben Rachbach, Veena Sridhar, Tegan Duong, Nathanael Ligon
+  - __Product Owner__: [Tegan Duong](https://github.com/teganduong)
+  - __Scrum Master__: [Nathanael Ligon](https://github.com/nligon)
+  - __Development Team Members__: [Ben Rachbach](https://github.com/brachbach), [Veena Sridhar](https://github.com/veena-sridhar)
 
 ## Table of Contents
 
-1. [Installation](#Installation) 
+1. [Installation](#Installation)
     1. [PostgreSQL](#PostgreSQL)
 2. [Requirements](#Requirements)
 3. [File Structure: Directory Layout](#File-Structure-Directory-Layout)
-4. [Setup](#Setup) 
+4. [Setup](#Setup)
     1. [Installing Dependencies](#Installing-Dependencies)
 5. [Usage](#Usage)
 6. [Roadmap](#Roadmap)
@@ -75,6 +75,10 @@ server/                                     #entry point for all server code
       initialization.js                     #initializes server connection with client
     
     routes.js                               #server-side routing
+
+        initialization.js                   #initializes server connection with client
+    assets.json                             #manages dependencies
+    routes.js                               #directs various routes within the back end
     utils.js                                #utility function that escapes unwanted characters
   db/                                       #entry point for database and connection
     connection.js                           #establishes connection between server and database
