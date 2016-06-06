@@ -1,4 +1,4 @@
-# Project Name
+# Farm Connect
 
 > Farm Connect is a marketplace application that allows small farmers to sell locally grown produce to the public at large. When  farmer lists an item to sell, it becomes available for purchase, and users can buy directly from those farms.
 
@@ -10,12 +10,12 @@
 
 ## Table of Contents
 
-1. [Installation](#Installation)
-    a. [PostgreSQL](#PostgreSQL)
+1. [Installation](#Installation) \n
+    1. [PostgreSQL](#PostgreSQL)
 2. [Requirements](#Requirements)
 3. [File Structure: Directory Layout](#File-Structure-Directory-Layout)
-4. [Setup](#Setup)
-    a. [Installing Dependencies](#Installing-Dependencies)
+4. [Setup](#Setup) \n
+    1. [Installing Dependencies](#Installing-Dependencies)
 5. [Usage](#Usage)
 6. [Contributing](#contributing)
 
@@ -28,12 +28,11 @@ PostgreSQL supports Mac OS X, Ubuntu, and Windows. To install postgres with Home
 ```sh
 brew install postgres
 ```
-If using Mac OS X, install the Postgres App by following [this link](http://postgresapp.com/). On Mac, Postgres runs best on the app, as opposed to regular terminal.
+If using Mac OS X, install the Postgres App by following [this link](http://postgresapp.com/). On Mac, Postgres runs best if you run it using the app, as opposed to running it from the terminal.
 
 ## Requirements
 
 - Node 4.4.4
-- Angular 1.0
 - PostgreSQL 9.5.3
 
 ## File Structure: Directory Layout
@@ -74,13 +73,12 @@ server/                                     #entry point for all server code
   config/
     middlewares/                            #initializes server connection with client
         initialization.js
-        logging.js
     assets.json                             #manages dependencies
     routes.js                               #directs various routes within the back end
     utils.js                                #utility function that escapes unwanted characters
   db/                                       #entry point for database and connection
     connection.js                           #establishes connection between server and database
-    data.js                                 #dummy data for users
+    userData.js                                 #dummy data for users
     postsData.js                            #dummy data for posts
     schema.sql                              #defines all tables and relations within the database
     seedDB.js                               #seeds the database with dummy data
@@ -100,12 +98,14 @@ Clone this repo to your local work station and from within the root directory:
 ./install
 ```
 
+To seed your database with dummy data, run 'node server/db/seedDB.js'
+
 ## Usage
 
-Once the dependencies are installed and configuration keys are setup, you can start the application with the following commands. First, within the postgres app:
+Once the dependencies are installed and configuration keys are setup, you can start the application with the following commands. Both the database and the server must be running properly in order for the app to run. First, within the postgres app:
 
 ```sh
-psql < ABSOLUTE_PATH_TO_YOUR_SCHEMA.SQL_FILE;
+psql < ABSOLUTE_PATH_ON_YOUR_MACHINE_TO_/Farm-Connect/server/db/schema.sql;
 ```
 
 And then from inside the command line in the root directory:
