@@ -38,12 +38,18 @@ var addFarmIfNecessary = (req, res, callback1, callback2) => {
   };
   console.log('post', post, post.farmName);
 
-  connection.query(`SELECT EXISTS (SELECT * FROM farms WHERE farm_name = '${post.farmName}')`, (err, result) => {
+  connection.query({
+    text: 'SELECT EXISTS (SELECT * FROM farms WHERE farm_name = $1)',
+    values: [post.farmName]
+    }, 
+
+    (err, result) => {
     //if the farm is not in the table, add it
     if (!result.rows[0].exists) {
-      connection.query(
-        `INSERT INTO farms (farm_name, location, phone)\
-        VALUES ('${post.farmName}', '${post.farmLocation}', '${post.farmPhone}')`, 
+      connection.query({
+          text: 'INSERT INTO farms (farm_name, location, phone) VALUES ($1, $2, $3)',
+          values: [post.farmName, post.farmLocation, post.farmPhone]
+        }, 
 
         (err, result) => {
           if (err) {
@@ -65,12 +71,19 @@ var addFarmIfNecessary = (req, res, callback1, callback2) => {
 
 //add the product to the products table if it wasn't already there
 var addProductIfNecessary = (req, res, post, callback) => {
-  connection.query(`SELECT EXISTS (SELECT * FROM products WHERE product_name = '${post.productName}')`, (err, result) => {
+  connection.query({
+    text: 'SELECT EXISTS (SELECT * FROM products WHERE product_name = $1)',
+    values: [post.productName] 
+    }, 
+
+    (err, result) => {
     //if the product is not in the table, add it
     if (!result.rows[0].exists) {
-      connection.query(
-        `INSERT INTO products (product_name)\
-        VALUES ('${post.productName}')`, 
+
+      connection.query({
+        text: 'INSERT INTO products (product_name) VALUES ($1)',
+        values: [post.productName]
+        },    
 
         (err, result) => {
           if (err) {
@@ -95,12 +108,12 @@ var addPost = (req, res, post) => {
   //add the post, specifying the farm and and the product with foreign keys
   connection.query(
     {
-      text: `INSERT INTO posts\
+      text: 'INSERT INTO posts\
       (farm_id, product_id, price_per_pound, pounds_available)\
       VALUES ((SELECT id FROM farms WHERE farm_name = $1),\
       (SELECT id FROM products WHERE product_name = $2),\
       $3,\
-      $4)`,
+      $4)',
 
       values: [post.farmName, post.productName, post.pricePerPound, post.poundsAvailable]
     },
