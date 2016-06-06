@@ -3,6 +3,7 @@ var connection = require('../db/connection.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
 
+//hases the password
 var generateHash = function(password) {
   return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 };
