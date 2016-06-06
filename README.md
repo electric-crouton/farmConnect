@@ -17,7 +17,8 @@
 4. [Setup](#Setup) \n
     1. [Installing Dependencies](#Installing-Dependencies)
 5. [Usage](#Usage)
-6. [Contributing](#contributing)
+6. [Roadmap](#Roadmap)
+7. [Contributing](#contributing)
 
 ##Installation
 
@@ -116,6 +117,10 @@ node server/server.js
 
 Open your web browser and go to `http://localhost:1337` to see the app running.
 
+
+##Roadmap
+
+View the project roadmap [here](https://github.com/electric-crouton/Farm-Connect/issues)
 
 ## Contributing
 
