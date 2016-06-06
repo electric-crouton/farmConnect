@@ -7,11 +7,11 @@
     "angular-cookies": "latest",
     "angular-mocks": "latest",
     "angular-route": "latest",
-    "bootstrap": "latest",
+    "bootstrap": "3.3.6",
     "angular-bootstrap": "latest",
     "angular-ui-router": "latest",
     "angular-ui-select": "latest",
     "angular-sanitize": "latest",
-    "ngCart": "ngcart#^1.0.0"
+    "angular-payments": "9643191f23"
   }
 }

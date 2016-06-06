@@ -24,7 +24,7 @@ h1 {
 
 input[type="submit"]{
   background-color: #53ad0e;
-  width: 270px;
+  width: 320px;
   font-size: 16px;
   color: #F7F7EB;
 }
@@ -45,7 +45,7 @@ form input, .farmLocation {
 
 form {
   margin: 0 auto;  
-  width: 300px;
+  width: 320px;
 }
 .error {
   height:30px; 
@@ -53,9 +53,6 @@ form {
 }
 input.ng-valid.ng-touched{
   border: 2px solid green;
-}
-input.ng-invalid.ng-touched {
-  border: 2px solid #B52E31;
 }
 
 .navbar {
@@ -119,7 +116,7 @@ input.ng-invalid.ng-touched {
 .aboutbox {
   background-color: #fff;
   width: 600px;
-  height: 240px;
+  height: 300px;
   margin: 0 auto;
   border-radius: 6px;
   padding: 20px;
@@ -135,17 +132,17 @@ input.ng-invalid.ng-touched {
   color: #000;
 }
 
-.farm-name {
+.productName {
   font-weight: 700;
   font-size: 16px;
 }
-.category, .location {
+.farm-name, .location {
   color: #818485;
 }
 .item-details {
   font-size: 13px;
 }
-.item-price {
+.item-price, .alert-info a {
   color: #53ad0e;
   font-weight: bold;
 }
@@ -170,9 +167,9 @@ input.ng-invalid.ng-touched {
   text-decoration: none;
   color: #F7F7EB;
 }
-.submit {
+/*.submit {
   margin-left: 40px;
-}
+}*/
 md-radio-button ._md-off {
   background-color: #F7F7EB;
 }
@@ -214,6 +211,15 @@ md-radio-button {
 }
 tfoot {
   font-weight: bold;
+}
+
+.checkoutForm input {
+  border: 1px solid black;
+}
+.checkout-btn {
+  margin: 0 10% 10px;
+  float: right;
+  border-radius: 5px;
 }
 
 

@@ -1,3 +1,4 @@
+
 var connection = require('../db/connection.js');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jsonwebtoken');
@@ -28,8 +29,8 @@ var generateHash = function(password) {
 
 var insertIntoFarmsTable = function(req, res, token) {
   connection.query(
-    `INSERT INTO farms (farm_name, location, phone)\
-    VALUES ('${req.body.farmName}', '${req.body.farmLocation}', '${req.body.farmPhone}')`, 
+    `INSERT INTO farms (user_id, farm_name, location, phone)\
+    VALUES ((SELECT id FROM users WHERE email = '${req.body.email}'),'${req.body.farmName}', '${req.body.farmLocation}', '${req.body.farmPhone}')`, 
 
     (err, result) => {
       if (err) {
@@ -50,7 +51,7 @@ var insertIntoUsersTable = function (req, res) {
   const hash = generateHash(user.password);
   req.body.password = hash;
 
-  const insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${user.email}', '${hash}', '${user.isFarmer}') RETURNING id`;
+  const insertQuery = `INSERT INTO users (email, password, farmer) VALUES ('${user.email}', '${hash}', '${user.farmer}') RETURNING id`;
   connection.query(insertQuery, function(err, result) {
     if (err) { console.log('error in inserting user into users table'); }
     user.id = result.rows[0].id;
@@ -60,7 +61,7 @@ var insertIntoUsersTable = function (req, res) {
         expiresIn: '2h'
       });
     
-    if (user.isFarmer == 'true') {
+    if (user.farmer == 'true') {
       insertIntoFarmsTable(req, res, token);
     } else {
       res.status(201).json({
@@ -68,6 +69,19 @@ var insertIntoUsersTable = function (req, res) {
         token: token
       });
     }
+  });
+};
+
+var getFarmerInfo = function(user, res) {
+  connection.query("select * from farms where user_id = '" + user.id + "'", function(err, result) {
+    console.log('result from getFarmerInfo in authController', result);
+    if (err) { 
+      console.log('error in getting farmer info');
+    } else {
+      res.status(200).json({
+        user: result.rows[0]
+      });     
+    } 
   });
 };
 
@@ -84,16 +98,21 @@ exports.signin = function(req, res) {
   connection.query("select * from users where email = '" + email + "'", function(err, result) {
     console.log('result in signin of authcontroller', result);
     if (err) { 
-      // return done(err); 
       console.log('error in querying users table');
     } else {
     // if email exists in db, compare user's entered PW to the one stored in the db
+    const user = result.rows[0];
     const dbPassword = result.rows[0].password;
     bcrypt.compare(userPW, dbPassword, function(err, match) {
         if (err) { console.log('wrong password!'); }
-        res.status(200).json({
-          user: result.rows[0]
-        });
+        else if (user.farmer == true) {
+          getFarmerInfo(user, res);
+        } else {
+          // If the user is not a seller, simply send their user info back to the client
+          res.status(200).json({
+            user: result.rows[0]
+          });
+        }
     });
     } 
   });
