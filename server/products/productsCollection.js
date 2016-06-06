@@ -94,12 +94,16 @@ var addProductIfNecessary = (req, res, post, callback) => {
 var addPost = (req, res, post) => {
   //add the post, specifying the farm and and the product with foreign keys
   connection.query(
-    `INSERT INTO posts\
-    (farm_id, product_id, price_per_pound, pounds_available)\
-    VALUES ((SELECT id FROM farms WHERE farm_name = '${post.farmName}'),\
-    (SELECT id FROM products WHERE product_name = '${post.productName}'),\
-    ${post.pricePerPound},\
-    ${post.poundsAvailable})`,
+    {
+      text: `INSERT INTO posts\
+      (farm_id, product_id, price_per_pound, pounds_available)\
+      VALUES ((SELECT id FROM farms WHERE farm_name = $1),\
+      (SELECT id FROM products WHERE product_name = $2),\
+      $3,\
+      $4)`,
+
+      values: [post.farmName, post.productName, post.pricePerPound, post.poundsAvailable]
+    },
 
     (err, result) => {
       //send a response to the client (or, if the post request came from the dummy data file rather than the client, then do nothing)
