@@ -71,6 +71,19 @@ var insertIntoUsersTable = function (req, res) {
   });
 };
 
+var getFarmerInfo = function(user, res) {
+  connection.query("select * from farms where user_id = '" + user.id + "'", function(err, result) {
+    console.log('result from getFarmerInfo in authController', result);
+    if (err) { 
+      console.log('error in getting farmer info');
+    } else {
+      res.status(200).json({
+        user: result.rows[0]
+      });     
+    } 
+  });
+};
+
 
 exports.signup = function(req, res) {
   checkForExistingEmailInDatabase(req, res, insertIntoUsersTable);
@@ -84,16 +97,20 @@ exports.signin = function(req, res) {
   connection.query("select * from users where email = '" + email + "'", function(err, result) {
     console.log('result in signin of authcontroller', result);
     if (err) { 
-      // return done(err); 
       console.log('error in querying users table');
     } else {
     // if email exists in db, compare user's entered PW to the one stored in the db
+    const user = result.rows[0];
     const dbPassword = result.rows[0].password;
     bcrypt.compare(userPW, dbPassword, function(err, match) {
         if (err) { console.log('wrong password!'); }
-        res.status(200).json({
-          user: result.rows[0]
-        });
+        else if (user.farmer == true) {
+          getFarmerInfo(user, res);
+        } else {
+          res.status(200).json({
+            user: result.rows[0]
+          });
+        }
     });
     } 
   });

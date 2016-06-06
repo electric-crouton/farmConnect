@@ -30,8 +30,9 @@ angular.module('farmConnect.addProducts', [])
   $scope.isFarmer = () => {
     const currentUser = $window.localStorage.getItem('currentUser');
     const parsedUser = JSON.parse(currentUser);
-    
-    if (parsedUser && parsedUser.farmer == true) {
+    console.log('parsedUser: ', parsedUser);
+
+    if (parsedUser && parsedUser.isFarmer == 'true' || parsedUser.farmer == true) {
       return true;
     }
     return false;
