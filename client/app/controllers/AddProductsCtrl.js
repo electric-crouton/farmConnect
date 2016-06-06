@@ -1,6 +1,6 @@
 angular.module('farmConnect.addProducts', [])
 
-.controller('AddProductsCtrl', function($scope, Products, $window) {
+.controller('AddProductsCtrl', function($scope, Products, $window, $rootScope) {
 
   $scope.product = {};
   $scope.alert = {};
@@ -36,11 +36,14 @@ angular.module('farmConnect.addProducts', [])
   $scope.isFarmer = () => {
     const currentUser = $window.localStorage.getItem('currentUser');
     const parsedUser = JSON.parse(currentUser);
+    console.log('currentUser: ', currentUser);
+    console.log('parsedUser: ', parsedUser);
 
-    if (parsedUser && parsedUser.isFarmer == 'true' || parsedUser.farmer == true || parsedUser.farm_name) {
+    if (currentUser !== null && parsedUser.isFarmer === 'true' || parsedUser.farmer === true || parsedUser.farm_name) {
       return true;
+    } else { 
+      return false;
     }
-    return false;
   };
 
 });

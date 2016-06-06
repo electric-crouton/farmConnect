@@ -1,11 +1,11 @@
 <div id="wrap">
   <!-- If current user not logged in or is not a farmer, hide form and display error msg to user -->
-  <div ng-show="isFarmer() == false" class="alert alert-info" role="alert">
+  <div ng-hide="isFarmer() == true" class="alert alert-info" role="alert">
     You must be a registered farmer in order to sell products! If you are currently logged in and would like to update your account, please click <a href="">here.</a> Otherwise, <a href="#/signin">signin</a> or <a href="#/signup">create an account.</a>
   </div>
 
   <!-- If current user is logged in and is a farmer, display the add product form -->
-  <div class="form_wrap" ng-show="isFarmer() == true">
+  <div class="form_wrap" ng-if="isFarmer()">
     <h1>Add a product to sell!</h1>
     <div ng-show="alert.type == 'success'" class="alert alert-success alert-dismissible" role="alert">
       <button type="button" class="close" data-dismiss="alert" aria-label="Close" ng-click="closeAlert()">
