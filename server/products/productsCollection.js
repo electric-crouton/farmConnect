@@ -15,7 +15,8 @@ exports.getPosts = (req, res) => {
           farmPhone: datum.phone,
           productName: datum.product_name,
           pricePerPound: datum.price_per_pound,
-          poundsAvailable: datum.pounds_available
+          poundsAvailable: datum.pounds_available,
+          img: datum.img
         };
       });
       console.log('posts:', posts);
@@ -67,13 +68,14 @@ var addPost = (req, res, post) => {
   connection.query(
     {
       text: 'INSERT INTO posts\
-      (farm_id, product_id, price_per_pound, pounds_available)\
+      (farm_id, product_id, price_per_pound, pounds_available, img)\
       VALUES ((SELECT id FROM farms WHERE farm_name = $1),\
       (SELECT id FROM products WHERE product_name = $2),\
       $3,\
-      $4)',
+      $4,\
+      $5)',
 
-      values: [post.farmName, post.productName, post.pricePerPound, post.poundsAvailable]
+      values: [post.farmName, post.productName, post.pricePerPound, post.poundsAvailable, post.img]
     },
 
     (err, result) => {

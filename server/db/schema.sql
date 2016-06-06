@@ -22,8 +22,7 @@ CREATE TABLE farms (
 CREATE TABLE products (
   id SERIAL PRIMARY KEY,
   product_name VARCHAR(100),
-  organic BOOLEAN,
-  img VARCHAR(100)
+  organic BOOLEAN
 );
 
 CREATE TABLE posts (
@@ -31,6 +30,7 @@ CREATE TABLE posts (
   farm_id integer REFERENCES farms (id),
   product_id integer REFERENCES products (id),
   price_per_pound decimal(10, 2),
-  pounds_available integer
+  pounds_available integer,
+  img VARCHAR(255)
 );
 
