@@ -1,4 +1,4 @@
-# Project Name #
+# Farm-Connect #
 
 <!-- 
 > This material was originally posted [here](http://www.quora.com/What-is-Amazons-approach-to-product-development-and-product-management). It is reproduced here for posterities sake.
@@ -15,15 +15,12 @@ Oh, and I also like to write press-releases in what I call "Oprah-speak" for mai
 
 Once the project moves into development, the press release can be used as a touchstone; a guiding light. The product team can ask themselves, "Are we building what is in the press release?" If they find they're spending time building things that aren't in the press release (overbuilding), they need to ask themselves why. This keeps product development focused on achieving the customer benefits and not building extraneous stuff that takes longer to build, takes resources to maintain, and doesn't provide real customer benefit (at least not enough to warrant inclusion in the press release).
  -->
- 
-## Heading ##
-Farm Connect
 
-## Sub-Heading ##
+## Audience ##
 Connecting people who care about their health and the environment to local farms.
 
 ## Summary ##
-Farm owners create profiles showing off their farms, then put their products up for sale. Consumers search for produce that fit their dietary preferences (organic, pesticide-free, etc.), then order for delivery directly to their doors.
+Farm Connect bridges the gap between local farms and people who want their food fresh, naturally, and locally. In addition, farmers can use this app to diversify and expand their business.
 
 ## Problem ##
 Small farms grow great produce but don't have the resources to reach out to all their potential customers. Consumers want to know where their food comes from, and they want food that's fresh, tasty, and healthy. But they also want to be able to quickly and painlessly buy a wide variety of produce from a large collection of local farms.
@@ -31,7 +28,7 @@ Small farms grow great produce but don't have the resources to reach out to all 
 ## Solution ##
 Farm Connect brings together small farms and consumers so that farms can find appreciative buyers of their producers and consumers can get the fresh, healthy, local produce they crave.
 
-## Quote from You ##
+## Quote from Spokesperson ##
 "Once you try Farm Connect, you'll never go back to the supermarket produce aisle!"
 
 ## How to Get Started ##
@@ -42,4 +39,4 @@ Farmers: just sign up for a free profile and start selling produce today!"
 "Before I discovered Farm Connect, I ate junk food for dinner every day, and I was putting on weight. Now that I have great local produce through Farm Connect, I just fix myself a salad!"
 
 ## Closing and Call to Action ##
-Farm Connect brings together small farmers and consumers for health, wealth, and local food!
+Farm Connect brings together small farms and consumers for health, wealth, and local food!
