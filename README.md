@@ -2,19 +2,20 @@
 
 > Farm Connect is a marketplace application that allows small farmers to sell locally grown produce to the public at large. When  farmer lists an item to sell, it becomes available for purchase, and users can buy directly from those farms.
 
-## Team
+## Development Team
 
-  - __Product Owner__: Tegan Duong
-  - __Scrum Master__: Nathanael Ligon
-  - __Development Team Members__: Ben Rachbach, Veena Sridhar, Tegan Duong, Nathanael Ligon
+  - [Tegan Duong](https://github.com/teganduong)
+  - [Nathanael Ligon](https://github.com/nligon)
+  - [Ben Rachbach](https://github.com/brachbach) 
+  - [Veena Sridhar](https://github.com/veena-sridhar)
 
 ## Table of Contents
 
-1. [Installation](#Installation) 
+1. [Installation](#Installation)
     1. [PostgreSQL](#PostgreSQL)
 2. [Requirements](#Requirements)
 3. [File Structure: Directory Layout](#File-Structure-Directory-Layout)
-4. [Setup](#Setup) 
+4. [Setup](#Setup)
     1. [Installing Dependencies](#Installing-Dependencies)
 5. [Usage](#Usage)
 6. [Roadmap](#Roadmap)
@@ -53,7 +54,6 @@ client/                                     #client entry point, imports all cli
       CartCtrl.js                           #controls addition and removal for items in shopping cart
       CheckoutCtrl.js                       #controls payment functionality
       ProductsCtrl.js                       #controls item addition to cart
-    
     views/                                  #entry point for all presentational components
       about.html                            #about page
       addProductForm.html                   #form for the addition of products to the marketplace
@@ -65,17 +65,14 @@ client/                                     #client entry point, imports all cli
     app.js                                  #initializes and loads all angular modules on clientside
     index.html                              
     routes.js                               #client side routing
-    services.js                             
-                         
+    services.js                                                    
 server/                                     #entry point for all server code
   auth/                                     #entry point for authentication control
     authController.js                       #controls authentication
   config/
+    routes.js                               #server-side routing
     middlewares/                            
       initialization.js                     #initializes server connection with client
-    
-    routes.js                               #server-side routing
-    utils.js                                #utility function that escapes unwanted characters
   db/                                       #entry point for database and connection
     connection.js                           #establishes connection between server and database
     postsData.js                            #dummy data for posts
